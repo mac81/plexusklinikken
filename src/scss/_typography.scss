@@ -1,0 +1,88 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300);
+@import url(https://fonts.googleapis.com/css?family=Poppins);
+
+:global {
+    body {
+        margin: 0;
+        font-family: 'Open Sans', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        color: $text-color;
+        font-size: 16px;
+        line-height: 32px;
+    }
+
+    h1,h2,h3,h4,h5 {
+        font-family: 'Open Sans Condensed', sans-serif;
+        font-weight: 300;
+
+        &.inverted {
+            color: #fff;
+        }
+    }
+
+    a {
+        color: #595f6b;
+        text-decoration: none;
+    }
+
+    .header-group {
+        margin: 0 0 80px 0;
+    }
+
+    .heading-xlarge {
+        font-size: 100px;
+        line-height: 120px;
+        margin: 0 0 40px 0;
+    }
+
+    .heading-large {
+        font-size: 72px;
+        line-height: 95px;
+        margin: 0 0 30px 0;
+    }
+
+    .heading-medium {
+        font-size: 36px;
+        line-height: 50px;
+        margin: 0 0 20px 0;
+    }
+
+    .heading-small {
+        //font-family: 'Open Sans', sans-serif;
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 35px;
+        margin: 0 0 20px 0;
+    }
+
+    .t1 {
+        display: inline-block;
+        span {
+            float: left;
+            display: inline-block;
+            position: relative;
+            padding: 0 20px;
+            &:before {
+                content: "";
+                position: absolute;
+                left: -55px;
+                top: 27px;
+                width: 55px;
+                height: 3px;
+                display: block;
+                border-top: 1px solid #d7d7d7;
+            }
+            &:after {
+                content: "";
+                position: absolute;
+                right: -55px;
+                top: 27px;
+                width: 55px;
+                height: 3px;
+                display: block;
+                border-top: 1px solid #d7d7d7;
+            }
+        }
+    }
+}

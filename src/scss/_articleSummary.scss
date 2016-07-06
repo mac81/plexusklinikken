@@ -1,0 +1,10 @@
+.articleSummary {
+    display: flex;
+    align-items: center;
+    > div {
+        width: 50%;
+        &:first-child {
+            padding-right: 60px;
+        }
+    }
+}

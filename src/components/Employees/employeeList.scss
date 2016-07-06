@@ -1,0 +1,13 @@
+.employeeList {
+    h2 {
+        margin: 0 0 40px 0;
+    }
+}
+
+.employees {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: 80%;
+    justify-content: center;
+}

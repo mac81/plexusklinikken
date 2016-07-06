@@ -1,0 +1,87 @@
+@import 'colors';
+
+:global {
+    .button {
+        float: left;
+        min-width: 150px;
+        //max-width: 250px;
+        display: block;
+        border: 2px solid $primary-color;
+        background: none;
+        color: $primary-color;
+        vertical-align: middle;
+        position: relative;
+        z-index: 1;
+        -webkit-backface-visibility: hidden;
+        -moz-osx-font-smoothing: grayscale;
+
+        padding: 13px 29px;
+        line-height: 17px;
+        font-size: 16px;
+        font-weight: 700;
+
+        &.fill {
+            background-color: $primary-color;
+            color: #fff;
+        }
+        &.inverted {
+            background-color: transparent;
+            border-color: #fff;
+            color: #fff;
+        }
+        &:hover {
+            background-color: $secondary-color;
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        span {
+            display: block;
+            vertical-align: middle;
+        }
+    }
+
+
+/* Winona */
+.button--winona {
+	overflow: hidden;
+	padding: 0;
+	transition: border-color 0.3s, background-color 0.3s;
+	transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+.button--winona::after {
+	content: attr(data-text);
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	color: #fff;
+	-webkit-transform: translate3d(0, 25%, 0);
+	transform: translate3d(0, 25%, 0);
+}
+
+
+.button--winona::after,
+.button--winona span {
+	padding: 1em 2em;
+	transition: transform 0.3s, opacity 0.3s;
+	transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
+}
+.button--winona:hover {
+	border-color: $primary-color;
+	background-color: $primary-color;
+}
+
+.button--winona:hover::after {
+	opacity: 1;
+	transform: translate3d(0, 0, 0);
+}
+.button--winona:hover span {
+	opacity: 0;
+	transform: translate3d(0, -25%, 0);
+}
+}

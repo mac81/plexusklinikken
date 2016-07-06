@@ -1,0 +1,44 @@
+.header {
+    display: block;
+    position: relative;
+    height: 40vmax;
+}
+
+.bg {
+    position: fixed;
+    background-image: url(/public/images/image.jpg);
+    background: -webkit-linear-gradient(top, rgba(35, 52, 69, 0.5), rgba(29, 44, 60, 0.5)), url(/public/images/image.jpg);
+    background-size: cover;
+    background-position: 50%;
+    height: 40vmax;
+    width: calc(100% - 325px);
+    top: 0;
+    left: 325px;
+    z-index: -1;
+
+    > div {
+        color: #fff;
+        position: absolute;
+        padding: 70px 100px;
+        bottom: 0;
+
+        h2 {
+            margin: 0;
+        }
+    }
+}
+
+article {
+    max-width: 80%;
+    p {
+        margin: 0 0 40px 0;
+    }
+}
+
+.employees {
+    width: 60%;
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0 auto;
+}

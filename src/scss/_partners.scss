@@ -1,0 +1,10 @@
+.partners {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: left;
+    li {
+        padding: 0 40px;
+        margin: 0 0 40px 0;
+        width: calc(100% * (1/2));
+    }
+}

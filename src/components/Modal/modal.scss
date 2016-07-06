@@ -1,0 +1,8 @@
+.wrapper {
+    display: flex;
+    text-align: left;
+    > div {
+        width: 50%;
+        padding: 0 30px;
+    }
+}

@@ -1,0 +1,33 @@
+@import 'colors';
+@import 'mq';
+
+
+
+.introArticle {
+    overflow: hidden;
+    img {
+        float: left;
+        margin-right: 30px;
+    }
+
+    :global {
+        .heading-large {
+            margin: 0;
+        }
+    }
+}
+
+.treatments {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.treatmentSummary {
+    > div {
+        width: 100%;
+        @include bp(large) {
+            float: left;
+            width: 50%;
+        }
+    }
+}
