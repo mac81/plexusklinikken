@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import matchMedia from 'matchmedia';
 //import ReactTooltip from 'react-tooltip';
 
 import styles from '../scss/app.scss';
@@ -30,7 +31,8 @@ class Menu extends Component {
         //let wrapperClass = styles.menu_wrapper + ' ' + styles.inverted;
 
         const modalStyle = {
-            width: '60%'
+            width: matchMedia('only screen and (min-width: 1024px)').matches ? '60%' : '100%',
+            height: matchMedia('only screen and (max-width: 1024px)').matches ? '80%' : 'auto'
         };
 
         const backdropStyle = {
