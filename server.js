@@ -12,7 +12,7 @@ var server = new WebpackDevServer(webpack(config), {
     historyApiFallback: true
 });
 
-server.listen(3000, 'localhost', function (err, result) {
+server.listen(process.env.PORT || 3000, 'localhost', function (err, result) {
     if (err) {
         return console.log(err);
     }
