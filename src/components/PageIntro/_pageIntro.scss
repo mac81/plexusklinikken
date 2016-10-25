@@ -1,0 +1,170 @@
+@import '../../scss/colors';
+@import '../../scss/mq';
+
+.pageIntro {
+    display: block;
+    @include bp(large) {
+        position: relative;
+        height: 100%;
+    }
+}
+
+.bg {
+    width: 100%;
+    padding: 80px 40px;
+    overflow-x: hidden;
+    @include bp(large) {
+        position: fixed;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+}
+
+.frontpage {
+    background: -webkit-linear-gradient(top, rgba(32, 39, 68, 0.8), rgba(36,37,66, 0.8)), url(/public/images/treatment.jpg);
+    background-size: cover;
+    background-position: 50%;
+}
+
+.training {
+    background: -webkit-linear-gradient(top, rgba(32, 39, 68, 0.7), rgba(36,37,66, 0.7)), url(/public/images/image.jpg);
+    background-size: cover;
+    background-position: 50%;
+}
+
+:global {
+    .pageIntro-heading {
+        font-size: 42px;
+        text-align: center;
+        margin: 0 0 30px 0;
+        color: #fff;
+        @include bp(large) {
+            font-size: 100px;
+            margin: 0 0 60px 0;
+        }
+    }
+    .pageIntro-subheading {
+        font-size: 24px;
+        line-height: 32px;
+        text-align: center;
+        margin: 0 0 40px 0;
+        color: #fff;
+        @include bp(large) {
+            font-size: 42px;
+            line-height: 52px;
+            margin: 0 0 80px 0;
+        }
+    }
+    .pageIntro-content {
+        font-size: 16px;
+        line-height: 20px;
+        color: #fff;
+        text-align: center;
+        @include bp(large) {
+            font-size: 18px;
+            line-height: 22px;
+        }
+    }
+}
+
+.content {
+    @include bp(large) {
+        position: absolute;
+        top: 35vh;
+        left: 50%;
+        width: 100%;
+        max-width: 1200px;
+        transform: translateX(-50%);
+    }
+
+
+    ul {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        @include bp(large) {
+            flex-direction: row;
+        }
+
+        li {
+            padding: 20px 0;
+            overflow: hidden;
+            width: 100%;
+            @include bp(large) {
+                padding: 0 30px;
+                width: 33.33%;
+            }
+            a {
+                display: block;
+                width: 100%;
+                font-size: 20px;
+            }
+        }
+    }
+
+    button {
+        border-color: #fff;
+        color: #fff;
+        margin: 0 20px 0 0;
+    }
+}
+
+.introBox {
+    display: block;
+    text-align: center;
+    min-width: 200px;
+    p {
+        padding: 10px 20px;
+        margin: 0;
+    }
+    .box1 {
+        background-color: $block-color-2;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+    .box2 {
+        background-color: $block-color-3;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+    .box3 {
+        background-color: $block-color-6;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+    &:hover {
+        .box1 {
+            background-color: darken($block-color-2, 10%);
+        }
+        .box2 {
+            background-color: darken($block-color-3, 10%);
+        }
+        .box3 {
+            background-color: darken($block-color-6, 10%);
+        }
+    }
+}
+
+.scroll {
+    display: none;
+    @include bp(large) {
+        display: block;
+        cursor: pointer;
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        width: 60px;
+        height: 60px;
+        transform: translateX(-50%);
+        background-image: url(/public/gfx/arrow.svg);
+        background-size: 60px;
+        background-color: rgba(255,255,255, 0.6);
+        border-radius: 50%;
+    }
+}

@@ -53,22 +53,40 @@ function remapIntroArticle(res) {
     return introArticle;
 }
 
-function remapTreatments(res) {
+// function remapTreatments(res) {
+//     const treatments = {};
+//     res.items[0].fields.treatments && res.items[0].fields.treatments.map(a => {
+//         if(!treatments[a.sys.id]) {
+//             treatments[a.sys.id] = a;
+//         }
+//     });
+//
+//     return treatments;
+// }
+
+function remapTreatments(res, id) {
+    const entry = res.includes.Entry.find(e => e.sys.id === id)
     const treatments = {};
-    res.items[0].fields.treatments && res.items[0].fields.treatments.map(a => {
-        if(!treatments[a.sys.id]) {
-            treatments[a.sys.id] = a;
+
+    entry.fields.treatments.map(e => {
+        if(!treatments[e.sys.id]) {
+            treatments[e.sys.id] = e;
         }
     });
 
     return treatments;
 }
 
-function remapServices(res, state) {
-    const services = {};
-    res.items[0].fields.services && res.items[0].fields.services.map(service => {
-        if(!services[service.sys.id]) {
-            services[service.sys.id] = service;
+function remapServices(res, id) {
+    const entry = res.includes.Entry.find(e => e.sys.id === id)
+    const services = {
+        title: entry.fields.title,
+        items: {}
+    };
+
+    entry.fields.services.map(e => {
+        if(!services.items[e.sys.id]) {
+            services.items[e.sys.id] = e;
         }
     });
 
@@ -84,6 +102,29 @@ function remapEmployees(res, state) {
     });
 
     return employees;
+}
+
+function remapPartners(res, state) {
+    const partners = {};
+    res.items[0].fields.partners && res.items[0].fields.partners.map(partner => {
+        if(!partners[partner.sys.id]) {
+            partners[partner.sys.id] = partner;
+        }
+    });
+
+    return partners;
+}
+
+function remapEntry(res, state) {
+    const entries = state.entries;
+
+    if(!entries[res.sys.id]) {
+        entries[res.sys.id] = res;
+    }
+
+    return {
+        entries
+    }
 }
 
 
@@ -121,6 +162,40 @@ function remapAssets(res, state) {
     }
 }
 
+// function remapSections(res, state) {
+//     const sections = state.sections || [];
+//     const services = state.services || {};
+//     const treatments = state.treatments || {};
+//
+//     res.items[0].fields.sections.map(s => {
+//         const section = res.includes.Entry.find(e => e.sys.id === s.sys.id);
+//
+//         if(!sections[section.sys.id]) {
+//             sections.push(section.sys.id);
+//         }
+//
+//         section.fields[section.sys.contentType.sys.id].map(se => {
+//             const entry = res.includes.Entry.find(entry => entry.sys.id === se.sys.id);
+//             if(section.sys.contentType.sys.id === 'services') {
+//                 if(!services[entry.sys.id]) {
+//                     services[entry.sys.id] = entry;
+//                 }
+//             }
+//             if(section.sys.contentType.sys.id === 'treatments') {
+//                 if(!treatments[entry.sys.id]) {
+//                     treatments[entry.sys.id] = entry;
+//                 }
+//             }
+//         });
+//     });
+//
+//     return {
+//         sections,
+//         services,
+//         treatments
+//     }
+// }
+
 export function fetchPage(page, contentType) {
     return (dispatch, getState) => {
 
@@ -137,31 +212,79 @@ export function fetchPage(page, contentType) {
         })
 
         if(!state.pages[page]) {
-            client.getEntries({content_type: contentType, include: 2})
+            // dispatch({
+            //     type: 'IS_LOADING',
+            //     isLoading: true
+            // })
+            client.getEntries({content_type: contentType, include: 3})
                 .then(function (res) {
 
                     const pages = state.pages;
+                    //const sections = res.items[0].fields.sections && remapSections(res, state);
                     const articles = remapArticles(res, state);
                     const introArticle = remapIntroArticle(res, state);
-                    const treatments = remapTreatments(res, state);
-                    const services = remapServices(res, state);
+
+                    const treatments = res.items[0].fields.treatments && remapTreatments(res, res.items[0].fields.treatments.sys.id);
+                    const services = res.items[0].fields.services && remapServices(res, res.items[0].fields.services.sys.id);
+
                     const employees = remapEmployees(res, state);
+                    const partners = remapPartners(res, state);
                     const entries = remapEntries(res, state);
                     const assets = remapAssets(res, state);
 
                     if(!state.pages[page]) {
                         pages[page] = {
-                            id: [page],
-                            title: res.items[0].fields.title,
-                            summary: res.items[0].fields.summary,
-                            articles: Object.keys(articles),
-                            introArticle: Object.keys(introArticle),
-                            treatments: Object.keys(treatments),
-                            employees: Object.keys(employees),
-                            services: Object.keys(services),
+                            id: page,
+                            // title: res.items[0].fields.title,
+                            // summary: res.items[0].fields.summary,
+                            //articles: Object.keys(articles),
+                            //introArticle: Object.keys(introArticle),
+                            //sections: sections.sections,
+                            //treatments: Object.keys(treatments),
+                            //employees: Object.keys(employees),
+                            //partners: Object.keys(partners),
+                            //services: Object.keys(services),
                             entries: Object.keys(entries.pageEntries),
                             assets: Object.keys(assets.pageAssets)
                         }
+                        //sections.sections ? pages[page].sections = sections.sections : null;
+                        treatments ? pages[page].treatments = Object.keys(treatments) : null;
+                        services ? pages[page].services = {
+                            title: services.title,
+                            items: Object.keys(services.items)
+                        } : null;
+
+                        // Page
+                        res.items[0].fields.title ? pages[page].title = res.items[0].fields.title : null;
+                        res.items[0].fields.summary ? pages[page].summary = res.items[0].fields.summary : null;
+                        res.items[0].fields.text ? pages[page].text = res.items[0].fields.text : null;
+                        res.items[0].fields.body ? pages[page].body = res.items[0].fields.body : null;
+                        res.items[0].fields.backgroundImage ? pages[page].backgroundImage = res.items[0].fields.backgroundImage : null;
+                        res.items[0].fields.employeeListTitle ? pages[page].employeeListTitle = res.items[0].fields.employeeListTitle : null;
+
+                        //Intro Article
+                        Object.keys(introArticle).length ? pages[page].introArticle = Object.keys(introArticle) : null;
+
+                        //Articles
+                        Object.keys(articles).length ? pages[page].articles = Object.keys(articles) : null;
+
+                        //Employees
+                        Object.keys(employees).length ? pages[page].employees = Object.keys(employees) : null;
+
+                        //Partners
+                        res.items[0].fields.titlePartners ? pages[page].titlePartners = res.items[0].fields.titlePartners : null;
+                        res.items[0].fields.summaryPartners ? pages[page].summaryPartners = res.items[0].fields.summaryPartners : null;
+                        Object.keys(partners).length ? pages[page].partners = Object.keys(partners) : null;
+
+                        // Contact Page
+                        res.items[0].fields.titleClinic ? pages[page].titleClinic = res.items[0].fields.titleClinic : null;
+                        res.items[0].fields.phoneClinic ? pages[page].phoneClinic = res.items[0].fields.phoneClinic : null;
+                        res.items[0].fields.emailClinic ? pages[page].emailClinic = res.items[0].fields.emailClinic : null;
+                        res.items[0].fields.bodyClinic ? pages[page].bodyClinic = res.items[0].fields.bodyClinic : null;
+                        res.items[0].fields.titleDoctor ? pages[page].titleDoctor = res.items[0].fields.titleDoctor : null;
+                        res.items[0].fields.phoneDoctor ? pages[page].phoneDoctor = res.items[0].fields.phoneDoctor : null;
+                        res.items[0].fields.emailDoctor ? pages[page].emailDoctor = res.items[0].fields.emailDoctor : null;
+                        res.items[0].fields.bodyDoctor ? pages[page].bodyDoctor = res.items[0].fields.bodyDoctor : null;
                     }
                     dispatch({
                         type: 'SET_PAGE',
@@ -189,7 +312,7 @@ export function fetchTest(id) {
     }
 }
 
-export function fetchEntry(id) {
+export function fetchEntry(contentType, id) {
     return (dispatch, getState) => {
 
         var client = contentful.createClient({
@@ -197,9 +320,15 @@ export function fetchEntry(id) {
             accessToken: '6274e3bdae4a785f1e1056c870a301b6a7d8bc893e69655354fc6ec439343fe6'
         })
 
-        client.getEntry(id)
+        client.getEntries({content_type: contentType, include: 2, 'sys.id': id})
             .then(function (res) {
-                console.log(res);
+                const entries = remapEntries(res, getState());
+                const assets = remapAssets(res, getState());
+                dispatch({
+                    type: 'SET_ENTRY',
+                    entries: entries.entries,
+                    assets: assets.assets
+                })
             })
     }
 }
@@ -240,7 +369,7 @@ export function setArticle(id) {
 export function sendMail() {
     return (dispatch) => {
         $.ajax({
-            url: "/api/sendmail"
+            url: "https://plexusklinikken-api.herokuapp.com/api"
         }).done(function() {
             console.log('ajax complete');
         });

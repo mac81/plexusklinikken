@@ -9,7 +9,7 @@ class Modal extends Component {
     render () {
         return (
             <div>
-                <Button attributes={{dataRemodalTarget: 'modal'}} mode="fill">Bestill time</Button>
+                <button className={styles.order} data-remodal-target="modal">Bestill time</button>
                 <div className="remodal" data-remodal-id="modal">
                     <button data-remodal-action="close" className="remodal-close"></button>
                     <h1>Bestill time</h1>
@@ -25,6 +25,7 @@ class Modal extends Component {
                             <a href="https://my.pasientsky.no/no/login" className="button button--winona" target="_blank" data-text="Bestill legetime"><span>Bestill legetime</span></a>
                         </div>
                     </div>
+                    <p>Usikker på hvilken behandling du behøver vennligst ta kontakt</p>
                     {/*<button data-remodal-action="cancel" className="remodal-cancel">Avbryt</button>*/}
                 </div>
             </div>

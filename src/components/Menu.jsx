@@ -10,26 +10,22 @@ class Menu extends Component {
 
     render() {
         let wrapperClass = this.props.mode === 'inverted' ? styles.menu_wrapper + ' ' + styles.inverted : styles.menu_wrapper;
+        //let wrapperClass = styles.menu_wrapper + ' ' + styles.inverted;
 
         return (
             <div className={wrapperClass}>
-                <div className={styles.logo_wrapper}>
-                    <img className={styles.logo} src="/gfx/logo.png" />
-                </div>
                 <nav>
                     <ul className={styles.nav_primary}>
                         <li><Link className={this.props.pathname === '/' ? styles.active : null} to="/">Forsiden</Link></li>
                         <li><Link className={this.props.pathname === '/behandlinger' ? styles.active : null} to="/behandlinger">Behandlingstilbud</Link></li>
-                        {/*<li><Link className={this.props.pathname === '/lege' ? styles.active : null} to="/lege">Legekontor</Link></li>*/}
+                        <li><Link className={this.props.pathname === '/legekontor' ? styles.active : null} to="/legekontor">Ski Legekontor</Link></li>
                         <li><Link className={this.props.pathname === '/trening' ? styles.active : null} to="/trening">Plexus Trening</Link></li>
-                        {/*<li><Link className={this.props.pathname === '/medlem' ? styles.active : null} to="/medlem">Medlemskap</Link></li>*/}
-                    </ul>
-                    <ul className={styles.nav_primary}>
-                        <li><Link className={this.props.pathname === '/om' ? styles.active : null} to="/om">Om Plexusklinikken</Link></li>
+                        <li><Link className={this.props.pathname === '/om' ? styles.active : null} to="/om">Om oss</Link></li>
                         <li><Link className={this.props.pathname === '/kontakt' ? styles.active : null} to="/kontakt">Kontakt oss</Link></li>
                     </ul>
+
                 </nav>
-                <ul className={styles.socialMedia}>
+                {/*<ul className={styles.socialMedia}>
                     <li>
                         <a href="#" className={styles.facebook} data-tip data-for="facebook"></a>
                         <ReactTooltip id='facebook' effect='solid' place="bottom" offset={{bottom: -5}} class={styles.socialMediaTooltip}>
@@ -54,7 +50,8 @@ class Menu extends Component {
                             <span>Linkedin</span>
                         </ReactTooltip>
                     </li>
-                </ul>
+
+                </ul>*/}
                 <div className={styles.order}>
                     <Modal/>
                 </div>

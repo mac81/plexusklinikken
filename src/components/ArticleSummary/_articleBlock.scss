@@ -1,0 +1,51 @@
+@import '../../scss/mq';
+
+.articleBlock {
+
+    .content {
+        padding: 30px;
+    }
+
+    @include bp(large) {
+        display: flex;
+        align-items: center;
+        align-content: center;
+        position: relative;
+        max-width: 100%;
+        padding: 50px;
+
+        .content,
+        .imageWrapper {
+            width: 50%;
+        }
+
+        .content {
+            padding: 0 100px;
+        }
+
+        .imageWrapper {
+            float: left;
+            width: 50%;
+        }
+
+        &.even {
+            background-color: #fff;
+            .imageWrapper {
+                order: 1;
+            }
+        }
+
+        // > div {
+        //     width: 50%;
+        //     &:first-child {
+        //         padding: 100px 60px 100px 0;
+        //     }
+        //     &.imageWrapper {
+        //         position: absolute;
+        //         right: 0;
+        //         bottom: 0;
+        //     }
+        // }
+    }
+
+}

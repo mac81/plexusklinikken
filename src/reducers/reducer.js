@@ -1,4 +1,5 @@
 const initialState = {
+    isLoading: false,
     activePage: 'index',
     //articles: {},
     //services: {},
@@ -9,6 +10,11 @@ const initialState = {
 
 export default function app(state = initialState, action) {
     switch (action.type) {
+        case 'IS_LOADING':
+            return {...state,
+                isLoading: action.isLoading
+            }
+
         case 'SET_ACTIVE_ENTRY':
             return {...state,
                 activeEntry: action.id
@@ -26,14 +32,16 @@ export default function app(state = initialState, action) {
         //
         case 'SET_ENTRY':
             return {...state,
-                entries: action.entries
+                entries: action.entries,
+                assets: action.assets
             }
 
         case 'SET_PAGE':
             return {...state,
                 pages: action.pages,
                 entries: action.entries,
-                assets: action.assets
+                assets: action.assets,
+                isLoading: false
             }
 
         case 'SET_ACTIVE_PAGE':

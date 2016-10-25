@@ -1,0 +1,54 @@
+@import '../../scss/mq';
+
+.articleSummary {
+
+    .content {
+        overflow: hidden;
+        padding: 30px;
+    }
+
+    @include bp(large) {
+        display: flex;
+        align-items: center;
+        position: relative;
+        max-width: 100%;
+
+        @media screen and (max-height:980px) {
+            align-items: flex-end;
+        }
+
+        .content {
+            width: 70%;
+            order: 2;
+            padding: 100px;
+        }
+
+        .asset {
+            order: 1;
+            width: 30%;
+        }
+
+        .imageWrapper {
+            background-size: cover;
+            background-position-x: 60%;
+            height: 86%;
+            padding-bottom: 100%;
+
+            .even & {
+                left: 0;
+            }
+
+            img {
+                display: none;
+            }
+        }
+
+    }
+    @include bp(xlarge) {
+        .imageWrapper {
+            background-position-x: 75%;
+            height: 70%;
+        }
+    }
+
+}

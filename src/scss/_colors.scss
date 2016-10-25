@@ -2,30 +2,57 @@
 ## Colors ##
 ***********/
 
-$primary-color: #233445;
-$secondary-color: #1d2c3c;
+$primary-color: #202744;
+$secondary-color: #1e2138;
 
-$contrast-color: #da9b27;
+$contrast-color: #009fe2;
+
+/****************
+## Font colors ##
+****************/
+$title-color: $primary-color;
+$text-color: #3c3f4a;
+
+/// Old? 
+
 $neutral-color: #eeeeee;
 $neutral-color-dark: rgb(43, 49, 54);
 $neutral-color-dark-2: rgb(36, 41, 45);
 // #2c3e50
 // #34495e
 
-
+$border-color: #333952;
 $border-color-light: #e8e8e6;
 $border-color-dark: #1a252f;
 
+$original-blue: #00a3e0;
+
+//complemantary
+// #434967
+// #384967
+// #1f2a44
+
+// #4B5773
+// #574D76
+// #3F6767
+// #323C52
+// #3B3455
+// #294A4A
 /****************
 ## Font colors ##
 ****************/
 $title-color: $primary-color;
-$text-color: #595f6b;
+$text-color: #3c3f4a;
 $text-color-inverted: #b1b1b1;
 
-$block-color-1: #95a5a6;
-$block-color-2: #70c0ba;
-$block-color-3: #74c5e3;
-$block-color-4: #6C7A89;
-$block-color-5: #BFBFBF;
-$block-color-6: #AEA8D3;
+$block-color-1: #4B5773;
+$block-color-2: #323C52;
+$block-color-3: #323C52;
+$block-color-4: #4B5773;
+$block-color-5: #4B5773;
+$block-color-6: #323C52;
+
+$block-color-7: #fff;
+
+$block-color-hover-1: #574D76;
+$block-color-hover-2: #3B3455;

@@ -4,11 +4,14 @@ import { RouteTransition } from 'react-router-transition';
 import Header from './Header';
 import Footer from './Footer';
 
+import { Loader } from '../components';
+
 class Layout extends Component {
     render() {
         return (
             <div>
-                <Header pathname={this.props.location.pathname}/>
+                <Loader />
+                <Header pathname={this.props.location.pathname} />
 
                 <main>
                     <RouteTransition

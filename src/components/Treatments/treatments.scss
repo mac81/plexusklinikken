@@ -1,0 +1,19 @@
+@import '../../scss/colors';
+@import '../../scss/mq';
+
+.treatments {
+    display: flex;
+    flex-flow: row wrap;
+    position: relative;
+    z-index: 2;
+}
+
+.treatmentSummary {
+    > div {
+        width: 100%;
+        @include bp(large) {
+            float: left;
+            width: 50%;
+        }
+    }
+}
