@@ -1,16 +1,46 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import ReactTooltip from 'react-tooltip';
+//import ReactTooltip from 'react-tooltip';
 
 import styles from '../scss/app.scss';
 
-import { Button, Modal } from '.';
+
+var Modal = require('boron/OutlineModal');
+
+import modalStyles from '../components/ModalWrapper/modal.scss';
+
+import { Button, ModalButton } from '.';
 
 class Menu extends Component {
+
+    constructor() {
+        super();
+    }
+
+    showModal = () => {
+        this.refs.modal.show();
+    }
+
+    hideModal = () => {
+        this.refs.modal.hide();
+    }
 
     render() {
         let wrapperClass = this.props.mode === 'inverted' ? styles.menu_wrapper + ' ' + styles.inverted : styles.menu_wrapper;
         //let wrapperClass = styles.menu_wrapper + ' ' + styles.inverted;
+
+        const modalStyle = {
+            width: '60%'
+        };
+
+        const backdropStyle = {
+            backgroundColor: 'rgba(32, 39, 68, 0.9)'
+        };
+
+        const contentStyle = {
+            height: '100%',
+            padding: '30px'
+        };
 
         return (
             <div className={wrapperClass}>
@@ -53,8 +83,28 @@ class Menu extends Component {
 
                 </ul>*/}
                 <div className={styles.order}>
-                    <Modal/>
+                    <ModalButton text="Bestill time" target="modal" onClick={this.showModal}/>
                 </div>
+
+                <Modal ref="modal" keyboard={this.callback} modalStyle={modalStyle} backdropStyle={backdropStyle} contentStyle={contentStyle}>
+                    <div className={modalStyles.container}>
+                        <button onClick={this.hideModal} className={modalStyles.close}></button>
+                        <h1>Bestill time</h1>
+                        <div className={modalStyles.wrapper}>
+                            <div>
+                                <h2>Plexusklinikken</h2>
+                                <p>Her kan du bestille timer hos Plexusklinikken</p>
+                                <a href="https://plexusklinikken.bestille.no" className="button button--winona" target="_blank" data-text="Bestill behandling"><span>Bestill behandling</span></a>
+                            </div>
+                            <div>
+                                <h2>Ski legesenter</h2>
+                                <p>Her kan du bestille timer hos legen</p>
+                                <a href="https://my.pasientsky.no/no/login" className="button button--winona" target="_blank" data-text="Bestill legetime"><span>Bestill legetime</span></a>
+                            </div>
+                        </div>
+                        <p>{`Usikker på hvilken behandling du behøver vennligst ta kontakt på tlf: 00 00 00 00`}</p>
+                    </div>
+                </Modal>
             </div>
         );
     }

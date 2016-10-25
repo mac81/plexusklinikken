@@ -1,0 +1,78 @@
+@import '../../scss/colors';
+@import '../../scss/mq';
+
+.container {
+    position: relative;
+    padding: 30px;
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        background: none;
+        border: none;
+        background-image: url(/public/gfx/cancel.svg);
+        background-position: center;
+        background-size: 40px;
+        transition: background 200ms ease-in-out;
+        cursor: pointer;
+        outline: none;
+        &:hover {
+            background-image: url(/public/gfx/cancel-hover.svg);
+            background-size: 40px;
+            background-position: center;
+            width: 40px;
+            height: 40px;
+        }
+    }
+}
+
+.wrapper {
+    display: flex;
+    text-align: left;
+    margin: 0 0 60px 0;
+    flex-flow: column;
+    @include bp(large) {
+        flex-flow: row;
+    }
+    > div {
+        width: 100%;
+        margin: 0 0 30px 0;
+        @include bp(large) {
+            width: 50%;
+            &:first-child {
+                margin: 0 15px 0 0;
+            }
+            &:last-child {
+                margin: 0 0 0 15px;
+            }
+        }
+    }
+}
+
+.order {
+    display: block;
+    border: none;
+    background: $contrast-color;
+    color: #fff;
+    vertical-align: middle;
+    z-index: 1;
+    -webkit-backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+
+    padding: 13px 20px;
+    line-height: 17px;
+    font-size: 16px;
+    font-weight: 700;
+    @include bp(large) {
+        position: absolute;
+        top: 17px;
+        right: 10px;
+    }
+
+    &.frontpage {
+        background: red;
+    }
+
+}

@@ -2,16 +2,34 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { values } from 'lodash';
 import Scroll from 'react-scroll';
+import matchMedia from 'matchmedia';
 
 import Layout from '../components/Layout';
 import Slider from 'react-slick';
 import EmployeeLink from '../components/Employees/EmployeeLink';
-import { Button, ArticleBlock, ArticleSummary, PageIntro } from '../components';
+import { Button, ArticleBlock, ArticleSummary, PageIntro, ModalButton } from '../components';
 
 import { Link } from 'react-router';
 import styles from '../components/PageIntro/_pageIntro.scss';
 
+var Modal = require('boron/OutlineModal');
+
+import modalStyles from '../components/ModalWrapper/modal.scss';
+
 class Frontpage extends Component {
+
+    constructor() {
+        super();
+    }
+
+    showModal = () => {
+        this.refs.modal.show();
+    }
+
+    hideModal = () => {
+        this.refs.modal.hide();
+    }
+
     render() {
         const settings = {
             dots: true,
@@ -28,6 +46,20 @@ class Frontpage extends Component {
         let firstArticle = this.props.articles ? this.props.articles[0] : null;
         const Element = Scroll.Element;
 
+        const modalStyle = {
+            width: matchMedia('only screen and (min-width: 1024px)').matches ? '60%' : '100%',
+            height: matchMedia('only screen and (max-width: 1024px)').matches ? '80%' : 'auto'
+        };
+
+        const backdropStyle = {
+            backgroundColor: 'rgba(32, 39, 68, 0.9)'
+        };
+
+        const contentStyle = {
+            height: '100%',
+            padding: '30px'
+        };
+
         return (
             <Layout location={this.props.location}>
                 <PageIntro background={this.props.pageBackgroundImage && this.props.pageBackgroundImage.fields.file.url}>
@@ -35,7 +67,7 @@ class Frontpage extends Component {
                     <h2 className="pageintro-subheading">{this.props.pageSummary}</h2>
                     <ul className="list">
                         <li>
-                            <Link to="/" className="button button--winona inverted" data-text="Bestill time"><span>Bestill time</span></Link>
+                            <ModalButton frontpage={true} text="Bestill time" target="modal" onClick={this.showModal}/>
                         </li>
                         <li>
                             <Link to="/behandlinger" className="button button--winona inverted" data-text="Behandlingstilbud"><span>Behandlingstilbud</span></Link>
@@ -53,6 +85,26 @@ class Frontpage extends Component {
                         </section>
                     </Element>
                 )}
+
+                <Modal ref="modal" keyboard={this.callback} modalStyle={modalStyle} backdropStyle={backdropStyle} contentStyle={contentStyle}>
+                    <div className={modalStyles.container}>
+                        <button onClick={this.hideModal} className={modalStyles.close}></button>
+                        <h1>Bestill time</h1>
+                        <div className={modalStyles.wrapper}>
+                            <div>
+                                <h2>Plexusklinikken</h2>
+                                <p>Her kan du bestille timer hos Plexusklinikken</p>
+                                <a href="https://plexusklinikken.bestille.no" className="button button--winona" target="_blank" data-text="Bestill behandling"><span>Bestill behandling</span></a>
+                            </div>
+                            <div>
+                                <h2>Ski legesenter</h2>
+                                <p>Her kan du bestille timer hos legen</p>
+                                <a href="https://my.pasientsky.no/no/login" className="button button--winona" target="_blank" data-text="Bestill legetime"><span>Bestill legetime</span></a>
+                            </div>
+                        </div>
+                        <p>{`Usikker på hvilken behandling du behøver vennligst ta kontakt på tlf: 00 00 00 00`}</p>
+                    </div>
+                </Modal>
 
                 {/*<section className="collapsed">
                     {this.props.articles && this.props.articles.map((article, i) => (
