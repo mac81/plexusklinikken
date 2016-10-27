@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Router, Route, hashHistory } from 'react-router';
+import { Router, Route, browserHistory } from 'react-router';
 
 // Redux
 import appStore from '../store/appStore';
@@ -133,7 +133,7 @@ class App extends Component {
     render() {
         return (
             <Provider store={store}>
-                <Router history={hashHistory} onUpdate={() => window.scrollTo(0, 0)}>
+                <Router history={browserHistory} onUpdate={() => window.scrollTo(0, 0)}>
                     <Route
                         component={Frontpage}
                         onEnter={handleOnEnterIndex}
