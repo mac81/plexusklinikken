@@ -25,7 +25,7 @@ class TreatmentSummary extends Component {
         let url = this.props.fields.name.toLowerCase();
 
         return (
-            <Link to={`behandlinger/${this.props.sys.id}`} className={className}>
+            <Link to={`/behandlinger/${this.props.sys.id}`} className={className}>
                 <h3 className="heading-medium">{this.props.fields.name}</h3>
                 <p>{this.props.fields.summary}</p>
                 <Button>Les mer</Button>

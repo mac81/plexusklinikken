@@ -15,6 +15,7 @@ class EmployeeList extends Component {
                 <div className={styles.employees}>
                     {this.props.employees && this.props.employees.map(employee => (
                         <EmployeeLink
+                            key={employee.sys.id}
                             id={employee.sys.id}
                             name={employee.fields.name}
                             position={employee.fields.position}

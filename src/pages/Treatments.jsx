@@ -24,7 +24,7 @@ class Treatments extends Component {
                 </div>*/}
                 <div>
                     {this.props.introArticle && (
-                        <PageIntro background="frontpage">
+                        <PageIntro background={this.props.pageBackgroundImage && this.props.pageBackgroundImage.fields.file.url}>
                             <h1 className="pageintro-heading">{this.props.pageTitle}</h1>
                             <h2 className="pageintro-subheading">{this.props.pageSummary}</h2>
                             <div className="pageintro-content" dangerouslySetInnerHTML={{__html: marked(this.props.pageText)}} />
@@ -68,6 +68,7 @@ function mapStateToProps(state) {
     return {
         pageTitle: state.pages[state.activePage] ? state.pages[state.activePage].title : null,
         pageSummary: state.pages[state.activePage] ? state.pages[state.activePage].summary : null,
+        pageBackgroundImage: state.pages[state.activePage] ? state.pages[state.activePage].backgroundImage : null,
         pageText: state.pages[state.activePage] ? state.pages[state.activePage].text : null,
         introArticle: introArticle,
         articles: articles

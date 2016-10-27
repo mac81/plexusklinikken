@@ -40,10 +40,10 @@ const handleOnEnterTreatment = (e) => {
 }
 
 const handleOnLeaveTreatment = () => {
-    store.dispatch({
-        type: 'SET_ACTIVE_ENTRY',
-        id: null
-    });
+    // store.dispatch({
+    //     type: 'SET_ACTIVE_ENTRY',
+    //     id: null
+    // });
 }
 
 const handleOnEnterService = (e) => {

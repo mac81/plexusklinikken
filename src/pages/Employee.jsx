@@ -13,7 +13,7 @@ class Employee extends Component {
     render() {
         let { employee, assets: { image } } = this.props;
 
-        if(!employee) return <div>No employee found</div>;
+        if(!employee) return null;
 
         let id = 'employee-' + employee.sys.id;
         let wrapperClass = cn(styles.imageWrapper, id);
@@ -30,7 +30,7 @@ class Employee extends Component {
                                 <div className={styles.header}>
                                     <h1 className={styles.name}>{employee.fields.name}</h1>
                                     <span className={styles.position}>
-                                        {employee.fields.position && employee.fields.position.map(p => ( <span>{p}</span> ))}
+                                        {employee.fields.positionTitle}
                                     </span>
                                 </div>
                             </div>
@@ -60,7 +60,7 @@ function mapStateToProps(state) {
     const employee = state.entries[state.activeEntry];
 
     const assets = {
-        image: employee && state.assets && values(state.assets).find(image => image.sys.id === employee.fields.image.sys.id)
+        image: employee && state.assets && values(state.assets).find(image => employee.fields.image && (image.sys.id === employee.fields.image.sys.id))
     }
 
     return {

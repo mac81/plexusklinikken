@@ -23,7 +23,7 @@ class Training extends Component {
         return (
             <Layout location={this.props.location}>
 
-                <PageIntro background="training">
+                <PageIntro background={this.props.pageBackgroundImage && this.props.pageBackgroundImage.fields.file.url}>
                     <h1 className="pageintro-heading">{pageTitle}</h1>
                     <h2 className="pageintro-subheading">{pageSummary}</h2>
                 </PageIntro>
@@ -31,7 +31,7 @@ class Training extends Component {
                 <Element name="scrollTo">
                     <section className="collapsed">
                         {this.props.articles.map((article, index) => (
-                            <ArticleBlock article={article} index={index} />
+                            <ArticleBlock key={index} article={article} index={index} />
                         ))}
                     </section>
 
@@ -67,6 +67,7 @@ function mapStateToProps(state, props) {
     return {
         pageTitle: state.pages[state.activePage] ? state.pages[state.activePage].title : null,
         pageSummary: state.pages[state.activePage] ? state.pages[state.activePage].summary : null,
+        pageBackgroundImage: state.pages[state.activePage] ? state.pages[state.activePage].backgroundImage : null,
         articles: entries,
         employees
     }
