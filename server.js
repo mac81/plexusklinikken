@@ -43,7 +43,11 @@ if(process.env.NODE_ENV !== 'production') {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/*', function(request, response) {
+app.get('/', function(request, response) {
+    response.sendFile(__dirname + '/index.html')
+});
+
+app.get('/behandlinger', function(request, response) {
     response.sendFile(__dirname + '/index.html')
 });
 
