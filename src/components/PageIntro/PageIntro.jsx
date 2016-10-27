@@ -18,6 +18,7 @@ class PageIntro extends Component {
             backgroundImage: `-moz-linear-gradient(top, rgba(32, 39, 68, 0.8), rgba(36,37,66, 0.8)), url(${this.props.background})`,
             backgroundImage: `-ms-linear-gradient(top, rgba(32, 39, 68, 0.8), rgba(36,37,66, 0.8)), url(${this.props.background})`,
             backgroundImage: `-webkit-linear-gradient(top, rgba(32, 39, 68, 0.8), rgba(36,37,66, 0.8)), url(${this.props.background})`,
+            backgroundImage: `linear-gradient(180deg, rgba(32, 39, 68, 0.8), rgba(36,37,66, 0.8)), url(${this.props.background})`,
             backgroundSize: 'cover',
             backgroundPosition: '50%'
         }

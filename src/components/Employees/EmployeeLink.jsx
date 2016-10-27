@@ -26,7 +26,7 @@ class EmployeeLink extends Component {
                         )}
                         <div className={styles.content}>
                             <h3 className={styles.title}>{name}</h3>
-                            <span className={styles.position}>{position}</span>
+                            {position && position.map(p => ( <span className={styles.position}>{p}</span> ))}
                             {/*<div className={styles.bio}>
                                 <p>{summary}</p>
                             </div>*/}

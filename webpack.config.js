@@ -1,11 +1,14 @@
 var path = require("path"),
-    webpack = require("webpack");
+    webpack = require("webpack"),
+    ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
+    devtool: "source-map",
     entry: [
-        'react-hot-loader/patch',
-        'webpack-dev-server/client?http://localhost:3000',
-        'webpack/hot/only-dev-server',
+        //'react-hot-loader/patch',
+        //'webpack-dev-server/client?http://localhost:3000',
+        //'webpack/hot/only-dev-server',
+        //'webpack-hot-middleware/client',
         './src/app'
     ],
     output: {
@@ -14,8 +17,16 @@ module.exports = {
         filename: "app.js"
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin(),
+        new ExtractTextPlugin("styles.css")
     ],
+    postcss: function () {
+        return [
+            require('autoprefixer')
+        ];
+    },
     resolve: {
         extensions: ['', '.js', '.jsx']
     },
@@ -27,17 +38,18 @@ module.exports = {
                 include: path.join(__dirname, 'src')
             },
             {
-                test: /\.css$/,
-                loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
-            },
-            {
                 test: /\.scss$/,
-                loaders: [
-                    'style?sourceMap',
-                    'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]',
-                    'resolve-url',
-                    'sass?sourceMap'
-                ]
+                loader: ExtractTextPlugin.extract([
+                    'css?sourceMap&modules&importLoaders=1&localIdentName=[path]___[name]__[local]',
+                    'postcss',
+                    'sass'
+                ])
+                // loaders: [
+                //     'style?sourceMap',
+                //     'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]',
+                //     'resolve-url',
+                //     'sass?sourceMap'
+                // ]
             },
             {
                 test: /\.json$/,

@@ -50,7 +50,7 @@ class Menu extends Component {
                     <ul className={styles.nav_primary}>
                         <li><Link className={this.props.pathname === '/' ? styles.active : null} to="/">Forsiden</Link></li>
                         <li><Link className={this.props.pathname === '/behandlinger' ? styles.active : null} to="/behandlinger">Behandlingstilbud</Link></li>
-                        <li><Link className={this.props.pathname === '/legekontor' ? styles.active : null} to="/legekontor">Ski Legekontor</Link></li>
+                        <li><Link className={this.props.pathname === '/legekontor' ? styles.active : null} to="/legekontor">Ski Legesenter</Link></li>
                         <li><Link className={this.props.pathname === '/trening' ? styles.active : null} to="/trening">Plexus Trening</Link></li>
                         <li><Link className={this.props.pathname === '/om' ? styles.active : null} to="/om">Om oss</Link></li>
                         <li><Link className={this.props.pathname === '/kontakt' ? styles.active : null} to="/kontakt">Kontakt oss</Link></li>

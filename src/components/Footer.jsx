@@ -21,14 +21,14 @@ class Footer extends Component {
             <footer className={styles.footer}>
                 <SimpleMap className={styles.map} />
                 <div className={styles.logo_wrapper}>
-                    <img className={styles.logo} src="/public/gfx/logo-white.png" />
+                    <img className={styles.logo} src="gfx/logo-white.png" />
                 </div>
                 <div className={styles.address}>
                     Plexusklinikken AS, Idrettsveien 16a, 1400 Ski
                 </div>
                 <div className={styles.contact}>
-                    <p><strong>Klinikk:</strong> 40 40 40 40</p>
-                    <p><strong>Legekontor:</strong> 40 40 40 40</p>
+                    <p><strong>Klinikk:</strong> 40 44 44 10</p>
+                    <p><strong>Legesenter:</strong> 64 00 02 22</p>
                 </div>
             </footer>
         );
