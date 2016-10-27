@@ -21,7 +21,7 @@ class Footer extends Component {
             <footer className={styles.footer}>
                 <SimpleMap className={styles.map} />
                 <div className={styles.logo_wrapper}>
-                    <img className={styles.logo} src="gfx/logo-white.png" />
+                    <img className={styles.logo} src="/gfx/logo-white.png" />
                 </div>
                 <div className={styles.address}>
                     Plexusklinikken AS, Idrettsveien 16a, 1400 Ski

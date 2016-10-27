@@ -19,7 +19,7 @@ class Training extends Component {
         const ScrollTo = Scroll.Link;
         const Element = Scroll.Element;
         let { pageTitle, pageSummary } = this.props;
-        console.log(this.props.articles)
+
         return (
             <Layout location={this.props.location}>
 

@@ -13,7 +13,7 @@ class Header extends Component {
             <header className="header">
                 <MediaQuery query='(max-width: 1024px)'>
                     <Link to="/" className="logo">
-                        <img className="logo-image" src="gfx/logo-blue.png" />
+                        <img className="logo-image" src="/gfx/logo-blue.png" />
                     </Link>
                     <BurgerMenu>
                         <Menu {...this.props} pathname={this.props.pathname}/>
@@ -22,7 +22,7 @@ class Header extends Component {
 
                 <MediaQuery query='(min-width: 1024px)'>
                     <Link to="/" className="logo">
-                        <img className="logo-image" src="gfx/logo-blue.png" />
+                        <img className="logo-image" src="/gfx/logo-blue.png" />
                     </Link>
                     <Menu {...this.props} pathname={this.props.pathname}/>
                 </MediaQuery>

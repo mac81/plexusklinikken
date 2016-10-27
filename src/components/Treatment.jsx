@@ -5,7 +5,6 @@ import marked from 'marked';
 class Treatment extends Component {
 
     render() {
-        console.log(this.props);
         if(!this.props.entries) return null;
         let treatment = this.props.entries && this.props.entries.find(treatment => treatment.fields.treatmentType === this.props.activeTreatment);
         if(!treatment) return null;

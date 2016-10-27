@@ -307,7 +307,7 @@ export function fetchTest(id) {
 
         client.getEntries({content_type: 'treatment', 'fields.treatmentType': 'fysioterapi'})
             .then(function (res) {
-                console.log(res);
+                //console.log(res);
             })
     }
 }

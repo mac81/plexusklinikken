@@ -33,6 +33,11 @@ module.exports = {
             require('autoprefixer')
         ];
     },
+    devServer: {
+        historyApiFallback: true,
+        contentBase: './',
+        hot: true
+    },
     resolve: {
         extensions: ['', '.js', '.jsx']
     },

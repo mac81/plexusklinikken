@@ -8,7 +8,6 @@ import { ArticleSummary, EmployeeList, Partners } from '../components';
 
 class About extends Component {
     render() {
-        console.log(this.props)
         return (
             <Layout location={this.props.location}>
                 <section>
