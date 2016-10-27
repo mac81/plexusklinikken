@@ -46,9 +46,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', function(request, response) {
     response.sendFile(__dirname + '/index.html')
 });
+//
+// app.get('/behandlinger', function(request, response) {
+//     response.sendFile(__dirname + '/index.html')
+// });
 
-app.get('/behandlinger', function(request, response) {
-    response.sendFile(__dirname + '/index.html')
+app.use(function(req, res, next) {
+  res.status(404).sendFile(__dirname + '/index.html')
 });
 
 app.listen(PORT, function(error) {

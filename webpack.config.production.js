@@ -8,7 +8,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "public/"),
         publicPath : '/public/',
-        filename: "app.min.js"
+        filename: "app.js"
     },
     plugins: [
         new webpack.DefinePlugin({
