@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { sendMail, fetchPage, fetchEntry, fetchTest, fetchTreatment, fetchPageAbout, fetchPageTreatments, fetchEmployees, setActiveTreatment, setActiveService } from '../actions/appActions';
 
 // Pages
-import { About, Contact, Frontpage, Training, Treatments, Article, Employee, Service, Treatment, Doctor } from '../pages';
+import { About, Contact, Frontpage, Training, Treatments, Article, Employee, Service, Treatment, Doctor, NoMatch } from '../pages';
 
 const store = appStore();
 
@@ -188,6 +188,7 @@ class App extends Component {
                         onEnter={handleOnEnterEmployee}
                         onLeave={handleOnLeaveEmployee}
                     />
+                    <Route path="*" component={NoMatch}/>
                 </Router>
             </Provider>
         );

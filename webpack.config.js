@@ -17,10 +17,16 @@ module.exports = {
         filename: "app.js"
     },
     plugins: [
+        new webpack.DefinePlugin({
+            __LOCAL__: true,
+            'process.env': {
+                NODE_ENV: JSON.stringify('development')
+            }
+        }),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
-        new ExtractTextPlugin("styles.css")
+        new ExtractTextPlugin("css/app.css")
     ],
     postcss: function () {
         return [

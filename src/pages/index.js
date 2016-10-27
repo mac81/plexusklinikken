@@ -4,6 +4,8 @@ export Frontpage from './Frontpage';
 export Training from './Training';
 export Treatments from './Treatments';
 
+// 404
+export NoMatch from './NoMatch';
 
 // Singles
 export Article from './Article';
