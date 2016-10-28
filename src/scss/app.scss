@@ -24,6 +24,10 @@
 
         height: 80px;
         background: linear-gradient(180deg, rgba(32, 39, 68, 1), rgba(36,37,66, 1));
+
+        > div {
+            height: 100%;
+        }
     }
 
     body {
@@ -47,11 +51,13 @@
     }
 
     .logo {
-        padding: 8px 30px;
+        padding: 0 30px;
         @include bp(large) {
             float: left;
         }
         .logo-image {
+            position: relative;
+            top: 10px;
             max-width: 150px;
         }
     }
