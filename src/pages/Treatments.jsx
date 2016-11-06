@@ -26,13 +26,11 @@ class Treatments extends Component {
                     </div>
                 </div>*/}
                 <div>
-                    {this.props.introArticle && (
-                        <PageIntro background={this.props.pageBackgroundImage && this.props.pageBackgroundImage.fields.file.url}>
-                            {this.props.pageTitle && (<h1 className={pageIntroStyles.heading}>{this.props.pageTitle}</h1>)}
-                            {this.props.pageSummary && (<h2 className={pageIntroStyles.subHeading}>{this.props.pageSummary}</h2>)}
-                            {this.props.pageText && (<div className={pageIntroStyles.content} dangerouslySetInnerHTML={{__html: marked(this.props.pageText)}} />)}
-                        </PageIntro>
-                    )}
+                    <PageIntro background={this.props.pageBackgroundImage && this.props.pageBackgroundImage.fields.file.url}>
+                        {this.props.pageTitle && (<h1 className={pageIntroStyles.heading}>{this.props.pageTitle}</h1>)}
+                        {this.props.pageSummary && (<h2 className={pageIntroStyles.subHeading}>{this.props.pageSummary}</h2>)}
+                        {this.props.pageText && (<div className={pageIntroStyles.content} dangerouslySetInnerHTML={{__html: marked(this.props.pageText)}} />)}
+                    </PageIntro>
 
                     <Element name="scrollTo" className="treatmentListContainer">
                         <TreatmentList/>
@@ -58,7 +56,7 @@ class Treatments extends Component {
 
 function mapStateToProps(state) {
 
-    const introArticle = state.pages[state.activePage] && state.entries[state.pages[state.activePage].introArticle[0]];
+    //const introArticle = state.pages[state.activePage] && state.entries[state.pages[state.activePage].introArticle[0]];
 
     const articles = [];
     if(state.pages[state.activePage]) {
@@ -73,7 +71,7 @@ function mapStateToProps(state) {
         pageSummary: state.pages[state.activePage] ? state.pages[state.activePage].summary : null,
         pageBackgroundImage: state.pages[state.activePage] ? state.pages[state.activePage].backgroundImage : null,
         pageText: state.pages[state.activePage] ? state.pages[state.activePage].text : null,
-        introArticle: introArticle,
+        //introArticle: introArticle,
         articles: articles
     }
 }
