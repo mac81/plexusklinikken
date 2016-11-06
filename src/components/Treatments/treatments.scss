@@ -2,18 +2,33 @@
 @import '../../scss/mq';
 
 .treatments {
+    margin: 0 auto;
+    padding: 30px 0;
+    list-style-type: none;
+    max-width: 1260px;
     display: flex;
-    flex-flow: row wrap;
-    position: relative;
-    z-index: 2;
+    flex-wrap: wrap;
+    > li {
+        // width: 100%;
+        border: 30px solid #f1f1f1;
+        background-color: #fff;
+        @include bp(large) {
+            //flex-grow: 3;
+            flex: 0 1 50%;
+            // flex: 2;
+        }
+
+        > a {
+            padding: 30px;
+            display: block;
+            overflow: hidden;
+            @include bp(large) {
+                padding: 60px;
+            }
+        }
+    }
 }
 
 .treatmentSummary {
-    > div {
-        width: 100%;
-        @include bp(large) {
-            float: left;
-            width: 50%;
-        }
-    }
+
 }

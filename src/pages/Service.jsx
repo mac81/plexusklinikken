@@ -16,7 +16,7 @@ class Service extends Component {
 
         return (
             <Layout location={this.props.location}>
-                <section>
+                <section className="first">
                     <article className="article">
                         <div className="article-content">
                             <h1 className="heading-xlarge centered">{service.fields.name}</h1>

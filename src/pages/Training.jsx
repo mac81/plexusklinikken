@@ -10,7 +10,9 @@ import { EmployeeList, ArticleSummary, ArticleBlock } from '../components';
 
 import Scroll from 'react-scroll';
 
+// Styles
 import styles from '../scss/_training.scss';
+import pageIntroStyles from '../components/PageIntro/_pageIntro.scss';
 
 import { PageIntro } from '../components';
 
@@ -18,14 +20,13 @@ class Training extends Component {
     render() {
         const ScrollTo = Scroll.Link;
         const Element = Scroll.Element;
-        let { pageTitle, pageSummary } = this.props;
 
         return (
             <Layout location={this.props.location}>
 
                 <PageIntro background={this.props.pageBackgroundImage && this.props.pageBackgroundImage.fields.file.url}>
-                    <h1 className="pageintro-heading">{pageTitle}</h1>
-                    <h2 className="pageintro-subheading">{pageSummary}</h2>
+                    {this.props.pageTitle && (<h1 className={pageIntroStyles.heading}>{this.props.pageTitle}</h1>)}
+                    {this.props.pageSummary && (<h2 className={pageIntroStyles.subHeading}>{this.props.pageSummary}</h2>)}
                 </PageIntro>
 
                 <Element name="scrollTo">

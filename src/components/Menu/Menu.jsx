@@ -3,21 +3,16 @@ import { Link } from 'react-router';
 import matchMedia from 'matchmedia';
 //import ReactTooltip from 'react-tooltip';
 
-import styles from '../scss/app.scss';
+import styles from '../../scss/app.scss';
 
 
 var Modal = require('boron/OutlineModal');
 
-import modalStyles from '../components/ModalWrapper/modal.scss';
+import modalStyles from '../ModalWrapper/modal.scss';
 
-import { Button, ModalButton } from '.';
+import { Button, ModalButton } from '../';
 
 class Menu extends Component {
-
-    constructor() {
-        super();
-    }
-
     showModal = () => {
         this.refs.modal.show();
     }
@@ -27,7 +22,7 @@ class Menu extends Component {
     }
 
     render() {
-        let wrapperClass = this.props.mode === 'inverted' ? styles.menu_wrapper + ' ' + styles.inverted : styles.menu_wrapper;
+        let wrapperClass = this.props.mode  === 'inverted' ? styles.menu_wrapper + ' ' + styles.inverted : styles.menu_wrapper;
         //let wrapperClass = styles.menu_wrapper + ' ' + styles.inverted;
 
         const modalStyle = {

@@ -5,6 +5,8 @@ import cn from 'classnames';
 
 import Partner from './Partner';
 
+import { SectionHeader } from '../';
+
 import styles from './partners.scss';
 
 class Partners extends Component {
@@ -13,11 +15,8 @@ class Partners extends Component {
         let className = cn('list', styles.partners);
 
         return (
-            <div className="content centered">
-                <div className="header-group">
-                    <h2 className="heading-large">{this.props.title}</h2>
-                    <h3 className="heading-small">{this.props.summary}</h3>
-                </div>
+            <div className="container">
+                <SectionHeader title={this.props.title} summary={this.props.summary} />
                 <ul className={className}>
                     {this.props.partners && this.props.partners.map(partner => (
                         <Partner {...partner} />

@@ -1,38 +1,62 @@
 @import 'colors';
 @import 'mq';
 
-.imageWrapper {
-    background: -webkit-linear-gradient(top, rgba($primary-color, 1), rgba($secondary-color, 1));
-    width: 100%;
-    height: 45vh;
+.colWrapper {
+    display: flex;
     overflow: hidden;
+    flex-direction: column;
+
+    @include bp(medium) {
+        flex-direction: row;
+    }
 }
 
-:global{
-.employee-5y3bCXL8PYyYm0OCYE0Wki {
-    background: url(/public/gfx/bg-vidar.png);
+.colOne,
+.colTwo {
+    position: relative;
+    width: 100%;
+    background-color: $primary-color;
+
+    @include bp(medium) {
+        width: 50%;
+    }
 }
-.employee-2VCZtebbiMYuEeiuQyOYss {
-    background: url(/public/gfx/bg-ingvill.png);
+
+.imageWrapper {
+    width: 100%;
+
+    @include bp(large) {
+        height: 50vh;
+        overflow: hidden;
+    }
 }
+
+.image {
+    position: relative;
+    top: 80px;
 }
 
 .header {
-    position: absolute;
-    top: 50%;
-    left: 40%;
-    transform: translate(-50%, -50%);
+    padding: 20px;
+    @include bp(medium) {
+        position: absolute;
+        top: 50%;
+        left: 40%;
+        transform: translate(-50%, -50%);
+        padding: 0;
+    }
 }
 
 .name {
-    // position: absolute;
-    // right: 0px;
-    // top: 100px;
-
-    font-size: 72px;
-    line-height: 95px;
-    margin: 0 0 30px 0;
+    font-size: 42px;
+    line-height: 1;
+    margin: 0 0 5px 0;
     color: #fff;
+    @include bp(large) {
+        font-size: 72px;
+        line-height: 95px;
+        margin: 0 0 30px 0;
+    }
     // @include bp(large) {
     //     font-size: 100px;
     //     line-height: 120px;
@@ -50,9 +74,14 @@
     // top: 200px;
 
     font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 36px;
+    font-size: 22px;
     font-weight: 300;
     color: $contrast-color;
+
+    @include bp(large) {
+        font-size: 36px;
+    }
+
     > span {
         &:after {
             content: ", ";
@@ -66,5 +95,8 @@
 }
 
 .bio {
-    padding: 80px 0;
+    padding: 20px;
+    @include bp(large) {
+        padding: 80px 0;
+    }
 }

@@ -17,10 +17,10 @@ class Treatment extends Component {
 
         // No treatment found
         //if(!treatment) return (<div>No treatment</div>);
-        
+
         return (
             <Layout location={this.props.location}>
-                <section>
+                <section className="first">
                     <article className="article">
                         <div className="article-content">
                             <h1 className="heading-xlarge centered">{treatment.fields.name}</h1>
@@ -30,7 +30,7 @@ class Treatment extends Component {
                     </article>
                 </section>
                 {treatment.fields.employees && (
-                    <section className="section">
+                    <section className="inverted">
                         <EmployeeList title={treatment.fields.employeeListTitle} employees={treatment.fields.employees} />
                     </section>
                 )}

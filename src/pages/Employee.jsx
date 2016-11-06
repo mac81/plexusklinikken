@@ -22,11 +22,13 @@ class Employee extends Component {
             <Layout location={this.props.location}>
                 <section className="collapsed">
                     {image && (
-                        <div className="col-wrapper">
-                            <div className="col-1">
+                        <div className={styles.colWrapper}>
+                            <div className={styles.colOne}>
+                                <div className={styles.imageWrapper}>
                                 <img className={styles.image} src={image.fields.file.url} alt={image.fields.file.fileName}/>
+                                </div>
                             </div>
-                            <div className="col-2">
+                            <div className={styles.colTwo}>
                                 <div className={styles.header}>
                                     <h1 className={styles.name}>{employee.fields.name}</h1>
                                     <span className={styles.position}>

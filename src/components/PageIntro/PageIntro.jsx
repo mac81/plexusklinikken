@@ -11,7 +11,9 @@ import styles from './_pageIntro.scss';
 class PageIntro extends Component {
     render() {
         const ScrollTo = Scroll.Link;
-        const bgClass = styles.bg + ' ' + styles[this.props.background];
+        //const bgClass = styles.bg + ' ' + styles[this.props.background];
+
+        const pageIntroClass = this.props.frontpage ? `${styles.pageIntro} ${styles.frontpage}` : styles.pageIntro;
 
         const style = {
             backgroundColor: 'rgba(32, 39, 68, 0.8)',
@@ -24,12 +26,15 @@ class PageIntro extends Component {
         }
 
         return (
-            <div className={styles.pageIntro}>
-                <div className={bgClass} style={style}>
-                    <div className={styles.content}>
+            <div className={pageIntroClass}>
+                <div className={styles.bg} style={style}>
+                    <div className={styles.contentWrapper}>
                         {this.props.children}
                     </div>
                     <ScrollTo className={styles.scroll} to="scrollTo" spy={true} smooth={true} offset={-80} duration={500} />
+                    {this.props.frontpage && (
+                        <ScrollTo className={styles.scroll} to="scrollTo" spy={true} smooth={true} offset={-80} duration={500} />
+                    )}
                 </div>
             </div>
         );

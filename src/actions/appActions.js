@@ -206,9 +206,15 @@ export function fetchPage(page, contentType) {
             accessToken: '6274e3bdae4a785f1e1056c870a301b6a7d8bc893e69655354fc6ec439343fe6'
         })
 
+        let solidMenu = false;
+        if(page === 'doctor' || page === 'about' || page === 'contact') {
+            solidMenu = true;
+        }
+
         dispatch({
             type: 'SET_ACTIVE_PAGE',
-            activePage: page
+            activePage: page,
+            solidMenu
         })
 
         if(!state.pages[page]) {

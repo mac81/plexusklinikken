@@ -14,7 +14,9 @@ import styles from '../components/PageIntro/_pageIntro.scss';
 
 var Modal = require('boron/OutlineModal');
 
+// Styles
 import modalStyles from '../components/ModalWrapper/modal.scss';
+import pageIntroStyles from '../components/PageIntro/_pageIntro.scss';
 
 class Frontpage extends Component {
 
@@ -62,9 +64,9 @@ class Frontpage extends Component {
 
         return (
             <Layout location={this.props.location}>
-                <PageIntro background={this.props.pageBackgroundImage && this.props.pageBackgroundImage.fields.file.url}>
-                    <h1 className="pageintro-heading">{this.props.pageTitle}</h1>
-                    <h2 className="pageintro-subheading">{this.props.pageSummary}</h2>
+                <PageIntro frontpage={true} background={this.props.pageBackgroundImage && this.props.pageBackgroundImage.fields.file.url}>
+                    {this.props.pageTitle && (<h1 className={pageIntroStyles.heading}>{this.props.pageTitle}</h1>)}
+                    {this.props.pageSummary && (<h2 className={pageIntroStyles.subHeading}>{this.props.pageSummary}</h2>)}
                     <ul className="list">
                         <li>
                             <ModalButton frontpage={true} text="Bestill time" target="modal" onClick={this.showModal}/>

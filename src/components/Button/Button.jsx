@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
-import getAttributesFromProps from '../getAttributesFromProps';
+import getAttributesFromProps from '../../getAttributesFromProps';
 
-import styles from '../scss/_button.scss';
+import styles from '../../scss/_button.scss';
 
 class Button extends Component {
 

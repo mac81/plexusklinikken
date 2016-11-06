@@ -1,7 +1,9 @@
+@import 'typography';
+
 .menu_wrapper {
     position: relative;
     width: 100%;
-    height: calc(100% - 73px);
+    height: calc(100% - 80px);
     background-color: $primary-color;
 
     @include bp(large) {
@@ -46,16 +48,24 @@
     @include bp(large) {
         position: absolute;
         top: 10px;
-        left: 200px;
+        right: 190px;
     }
 
-    // &:first-child {
-    //     margin-bottom: 60px;
-    // }
-
     li {
+        padding: 0 30px;
+
+
+
         @include bp(large) {
             float: left;
+            padding: 0 15px;
+
+            &:first-child {
+                padding-left: 0;
+            }
+            &:last-child {
+                padding-right: 0;
+            }
         }
         //border-bottom: 1px solid $border-color-light;
         // .inverted & {
@@ -70,17 +80,16 @@
     }
 
     a {
+
+        font-family: $contrast-font-family;
+        text-transform: uppercase;
+        font-size: 14px;
+
         display: block;
         color: #fff;
-        padding: 0 30px;
 
         text-align: left;
         line-height: 60px;
-
-        @include bp(large) {
-            padding: 0 15px;
-        }
-
 
         &.active {
             color: $contrast-color;

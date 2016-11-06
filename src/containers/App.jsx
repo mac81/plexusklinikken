@@ -33,9 +33,11 @@ const handleOnEnterTreatment = (e) => {
     if(!store.getState().pages.treatments) {
         store.dispatch(fetchPage('treatments', 'sideBehandlingstilbud'));
     }
+
     store.dispatch({
         type: 'SET_ACTIVE_ENTRY',
-        id: e.params.id
+        id: e.params.id,
+        solidMenu: true
     });
 }
 
@@ -68,7 +70,8 @@ const handleOnEnterService = (e) => {
 
     store.dispatch({
         type: 'SET_ACTIVE_ENTRY',
-        id: id
+        id: id,
+        solidMenu: true
     });
 }
 
@@ -93,7 +96,8 @@ const handleOnEnterArticle = (e) => {
 
     store.dispatch({
         type: 'SET_ACTIVE_ENTRY',
-        id: id
+        id: id,
+        solidMenu: true
     });
 }
 
@@ -114,7 +118,8 @@ const handleOnEnterEmployee = (e) => {
 
     store.dispatch({
         type: 'SET_ACTIVE_ENTRY',
-        id: id
+        id: id,
+        solidMenu: true
     });
 }
 

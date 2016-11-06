@@ -2,6 +2,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+require('autotrack');
+
 import App from './containers/App';
 
 const root = document.getElementById('app');
@@ -30,3 +32,12 @@ ReactDOM.render(
 //         );
 //     });
 // }
+
+// Google Analytics
+ga('create', 'UA-86523189-1', 'auto');
+
+ga('require', 'cleanUrlTracker');
+ga('require', 'outboundLinkTracker');
+ga('require', 'urlChangeTracker');
+
+ga('send', 'pageview');

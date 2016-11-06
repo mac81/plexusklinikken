@@ -10,11 +10,11 @@ class TreatmentList extends Component {
     render() {
 
         return (
-            <div className={styles.treatments}>
+            <ul className={styles.treatments}>
                 {this.props.treatments && this.props.treatments.map((treatment, i) => (
-                    <TreatmentSummary {...treatment} index={i} key={treatment.sys.id} />
+                    <li><TreatmentSummary {...treatment} index={i} key={treatment.sys.id} /></li>
                 ))}
-            </div>
+            </ul>
         );
     }
 }

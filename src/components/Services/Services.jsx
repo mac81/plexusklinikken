@@ -4,14 +4,18 @@ import { values } from 'lodash';
 
 import ServiceSummary from './ServiceSummary';
 
+import { SectionHeader } from '../';
+
+import styles from './_services.scss';
+
 class Services extends Component {
 
     render() {
         let { title, services } = this.props;
         return (
-            <div>
-                <h2 className="heading-large">{title}</h2>
-                <ul className="boxedList list">
+            <div className={styles.services}>
+                <SectionHeader title={title} inverted={true}/>
+                <ul className="list">
                     {services && services.map(service => (
                         <ServiceSummary key={service.sys.id} {...service} />
                     ))}

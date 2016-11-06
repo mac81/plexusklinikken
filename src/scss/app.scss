@@ -10,23 +10,31 @@
 
 :global {
 
+    .treatmentListContainer {
+        background-color: #f1f1f1;
+        position: relative;
+        z-index: 2;
+    }
+
     *, *:after, *:before {
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
     }
 
     header {
-        //@include bp(large) {
-            position: fixed;
-            z-index: 10;
-        //}
+        position: fixed;
+        z-index: 10;
         width: 100%;
-
         height: 80px;
-        background: linear-gradient(180deg, rgba(32, 39, 68, 1), rgba(36,37,66, 1));
+        top: 0;
+        left: 0;
+
+        &.solid {
+            background: linear-gradient(180deg, rgba(32, 39, 68, 1), rgba(36,37,66, 1));
+        }
 
         > div {
-            height: 100%;
+            height: 80px;
         }
     }
 
@@ -35,15 +43,9 @@
     }
 
     main {
-        //overflow-x: hidden;
-        background: #fff;
+        background-color: #fff;
         position: relative;
-        z-index: 2;
-        //margin-bottom: 600px;
-        top: 80px;
-        @include bp(large) {
-            //margin-left: 325px;
-        }
+        //padding-top: 80px;
     }
 
     img {
@@ -73,6 +75,16 @@
         background: $contrast-color !important;
     }
 
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .container-small {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
     section {
         position: relative;
         z-index: 2;
@@ -80,7 +92,7 @@
         background: #f1f1f1;
         overflow: hidden;
         @include bp(large) {
-            padding: 50px 80px;
+            padding: 80px 80px;
         }
         &.block-1 {
             padding: 0;
@@ -97,8 +109,16 @@
             padding: 0;
         }
 
+        &.inverted {
+            background-color: $primary-color;
+        }
+
         &.white {
             background-color: #fff;
+        }
+
+        &.first {
+            padding-top: 130px;
         }
 
         // article {
@@ -109,10 +129,9 @@
         // }
     }
 
-    article {
-        margin: 0 auto;
-        max-width: 1170px;
-    }
+    // .seperator {
+    //
+    // }
 
     .slider-wrapper {
         margin: 0 auto;
@@ -210,6 +229,10 @@
         }
     }
 
+    .services {
+        text-align: center;
+    }
+
     .boxedList {
         display: flex;
         flex-wrap: wrap;
@@ -228,7 +251,7 @@
             }
             a {
                 display: block;
-
+                text-align: center;
                 &:hover {
                     .image-wrapper {
                         &:before {
@@ -347,17 +370,7 @@
 }
 
 :global {
-    .col-wrapper {
-        display: flex;
-        height: 40vh;
-        overflow: hidden;
-    }
-.col-1,
-.col-2 {
-    position: relative;
-    width: 50%;
-    background-color: $primary-color;
-}
+
 
     .test {
         background-color: $primary-color;

@@ -17,7 +17,8 @@ export default function app(state = initialState, action) {
 
         case 'SET_ACTIVE_ENTRY':
             return {...state,
-                activeEntry: action.id
+                activeEntry: action.id,
+                solidMenu: action.solidMenu
             }
 
         // case 'SET_PAGE':
@@ -46,7 +47,8 @@ export default function app(state = initialState, action) {
 
         case 'SET_ACTIVE_PAGE':
             return {...state,
-                activePage: action.activePage
+                activePage: action.activePage,
+                solidMenu: action.solidMenu
             }
 
         // case 'SET_ARTICLES':

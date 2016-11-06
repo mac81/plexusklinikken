@@ -10,10 +10,11 @@ class About extends Component {
     render() {
         return (
             <Layout location={this.props.location}>
-                <section>
-                    <article className="article">
+                <section className="first">
+                    <article className="container-small">
                         <div className="article-content">
                             <h1 className="heading-xlarge centered">{this.props.pageTitle}</h1>
+                            <div className="seperator"></div>
                             <p className="excerpt centered">{this.props.pageSummary}</p>
                             <div className="wysiwyg">
                                 <p>Plexusklinikken Ski ble startet i januar 2009 med en rekke terapeuter som allerede var godt innarbeidet i Follo og som hadde lang praksis og erfaring. Intensjonen med klinikken er å tilby de fleste behandlingstilbud under ett tak og få maksimalt utbytte av det tverrfaglige miljøet både for pasient og terapeut. Plexusklinikkens terapeuter behandler kun en klient om gangen. - Fokus er på deg!</p>
