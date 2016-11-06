@@ -13,3 +13,4 @@ export Loader from './Loader/Loader';
 export Menu from './Menu/Menu';
 export BurgerMenu from './Menu/BurgerMenu';
 export SectionHeader from './SectionHeader/SectionHeader';
+export Text from './Text/Text';

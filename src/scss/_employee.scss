@@ -34,6 +34,14 @@
 .image {
     position: relative;
     top: 80px;
+
+    @media screen and (max-height:900px) {
+        width: 80%;
+    }
+
+    @media screen and (max-height:700px) {
+        width: 70%;
+    }
 }
 
 .header {
@@ -57,10 +65,14 @@
         line-height: 95px;
         margin: 0 0 30px 0;
     }
-    // @include bp(large) {
-    //     font-size: 100px;
-    //     line-height: 120px;
-    // }
+
+    @media screen and (max-height:900px) {
+        font-size: 52px;
+    }
+
+    @media screen and (max-height:700px) {
+        font-size: 42px;
+    }
 }
 
 .positionWrapper {

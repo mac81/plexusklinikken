@@ -1,17 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { values } from 'lodash';
-import marked from 'marked';
 
 import Layout from '../components/Layout';
 
-//import styles from '../scss/_button.scss';
+import { Text } from '../components';
 
 class Article extends Component {
 
     render() {
-        //let { article, assets: { image } } = this.props;
-
         let { article } = this.props;
 
         if(!article) return <div>No article found</div>;
@@ -28,7 +25,7 @@ class Article extends Component {
                                     <img src={image.fields.file.url} alt={image.fields.file.fileName}/>
                                 </div>
                             )*/}
-                            <div className="wysiwyg" dangerouslySetInnerHTML={{__html: marked(article.fields.body)}} />
+                            <Text>{article.fields.body}</Text>
                         </div>
                     </article>
                 </section>

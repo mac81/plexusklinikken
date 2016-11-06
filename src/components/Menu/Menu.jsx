@@ -99,7 +99,7 @@ class Menu extends Component {
                                 <a href="https://my.pasientsky.no/no/login" className="button button--winona" target="_blank" data-text="Bestill legetime"><span>Bestill legetime</span></a>
                             </div>
                         </div>
-                        <p>{`Usikker på hvilken behandling du behøver vennligst ta kontakt på tlf: 00 00 00 00`}</p>
+                        <p>{`Usikker på hvilken behandling du behøver vennligst ta kontakt på tlf: 40 44 44 10`}</p>
                     </div>
                 </Modal>
             </div>

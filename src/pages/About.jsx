@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { values } from 'lodash';
 
+// Layout
 import Layout from '../components/Layout';
 
-import { ArticleSummary, EmployeeList, Partners } from '../components';
+// Components
+import { ArticleSummary, EmployeeList, Partners, Text } from '../components';
 
 class About extends Component {
     render() {
@@ -14,13 +16,8 @@ class About extends Component {
                     <article className="container-small">
                         <div className="article-content">
                             <h1 className="heading-xlarge centered">{this.props.pageTitle}</h1>
-                            <div className="seperator"></div>
-                            <p className="excerpt centered">{this.props.pageSummary}</p>
-                            <div className="wysiwyg">
-                                <p>Plexusklinikken Ski ble startet i januar 2009 med en rekke terapeuter som allerede var godt innarbeidet i Follo og som hadde lang praksis og erfaring. Intensjonen med klinikken er å tilby de fleste behandlingstilbud under ett tak og få maksimalt utbytte av det tverrfaglige miljøet både for pasient og terapeut. Plexusklinikkens terapeuter behandler kun en klient om gangen. - Fokus er på deg!</p>
-                                <p>Det finnes mange behandlingtilbud, og ofte er det vanskelig å velge. Vi hjelper deg å finne riktig behandling for din plage! Terapeuten du kommer til vil utføre en grundig undersøkelse og vurdere hvilken type behandling eller hvilke kombinasjoner av behandlinger som er mest effektiv for din helse. Plexusklinikken har mange samarbeidspartnere som er til din fordel.</p>
-                                <p>I tillegg til behandling, holder våre terapeuter foredrag for klubber (utøvere/trenere) som ønsker å lære mer om: - Skadeforebygging - Kosthold og ernæring for idrettsutøvere - Restitusjon - Teipekurs- førstehjelpskurs. Plexusklinikken tilbyr også coaching for enkeltpersoner og lag.</p>
-                            </div>
+                            {this.props.pageSummary && (<p className="excerpt centered">{this.props.pageSummary}</p>)}
+                            <Text>{this.props.pageBody}</Text>
                         </div>
                     </article>
                 </section>
@@ -30,6 +27,7 @@ class About extends Component {
                         <ArticleSummary article={article} index={i} />
                     </section>
                 ))}
+
 
                 <section className="section">
                     <EmployeeList title={this.props.employeeListTitle} employees={this.props.employees}/>
@@ -44,10 +42,7 @@ class About extends Component {
 }
 
 function mapStateToProps(state, props) {
-    // const service = state[state.activePage].services && state[state.activePage].services.find(service => service.sys.id === props.sys.id);
-    // const assets = {
-    //     image: state[state.activePage].assets && state[state.activePage].assets.find(image => image.sys.id === service.fields.image.sys.id)
-    // }
+
     const articles = [];
     if(state.pages[state.activePage]) {
         state.pages[state.activePage].articles.map(id => {
@@ -75,6 +70,7 @@ function mapStateToProps(state, props) {
     return {
         pageTitle: state.pages[state.activePage] ? state.pages[state.activePage].title : null,
         pageSummary: state.pages[state.activePage] ? state.pages[state.activePage].summary : null,
+        pageBody: state.pages[state.activePage] ? state.pages[state.activePage].body : null,
         articles: articles,
         employees: employees,
         partners: partners,

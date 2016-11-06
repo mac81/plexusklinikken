@@ -41,7 +41,7 @@ class Header extends Component {
 
         return (
             <header className={headerClass}>
-                <MediaQuery query='(max-width: 1024px)'>
+                <MediaQuery query='(max-width: 1023px)'>
                     <Link to="/" className="logo">
                         <img className="logo-image" src="/gfx/logo-blue.png" />
                     </Link>

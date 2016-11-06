@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { values } from 'lodash';
-import marked from 'marked';
+
+import { Text } from '../';
 
 import styles from './_articleBlock.scss';
 
@@ -24,7 +25,7 @@ class ArticleBlock extends Component {
                 <div className={styles.content}>
                     <h2 className="heading-medium">{article.fields.title}</h2>
                     <p className="excerpt">{article.fields.summary}</p>
-                    <div className="wysiwyg" dangerouslySetInnerHTML={{__html: marked(article.fields.body)}} />
+                    <Text>{article.fields.body}</Text>
                 </div>
             </article>
         );
