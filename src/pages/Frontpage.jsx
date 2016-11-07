@@ -46,11 +46,16 @@ class Frontpage extends Component {
         };
 
         let firstArticle = this.props.articles ? this.props.articles[0] : null;
+        let otherArticles = this.props.articles.filter((article, index) => {
+            return index > 0 ;
+        });
         const Element = Scroll.Element;
 
         const modalStyle = {
             width: matchMedia('only screen and (min-width: 1024px)').matches ? '60%' : '100%',
-            height: matchMedia('only screen and (max-width: 1024px)').matches ? '80%' : 'auto'
+            height: matchMedia('only screen and (max-width: 1024px)').matches ? '100%' : 'auto',
+            overflow: 'scroll',
+            backgroundColor: '#fff'
         };
 
         const backdropStyle = {
@@ -59,7 +64,7 @@ class Frontpage extends Component {
 
         const contentStyle = {
             height: '100%',
-            padding: '30px'
+            padding: matchMedia('only screen and (max-width: 1024px)').matches ? '10px' : '30px',
         };
 
         return (
@@ -87,6 +92,12 @@ class Frontpage extends Component {
                         </section>
                     </Element>
                 )}
+
+                {otherArticles.map((article, index) => (
+                    <section key={article.sys.id} className="collapsed inverted">
+                        <ArticleSummary article={article} index={index} />
+                    </section>
+                ))}
 
                 <Modal ref="modal" keyboard={this.callback} modalStyle={modalStyle} backdropStyle={backdropStyle} contentStyle={contentStyle}>
                     <div className={modalStyles.container}>

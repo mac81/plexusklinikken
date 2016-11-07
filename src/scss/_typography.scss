@@ -23,8 +23,10 @@ $contrast-font-family: 'Montserrat';
         font-weight: 300;
         color: $title-color;
         line-height: 1;
+    }
 
-        &.inverted {
+    .inverted {
+        h1,h2,h3,h4,h5, p {
             color: #fff;
         }
     }

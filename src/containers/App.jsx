@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Router, Route, browserHistory } from 'react-router';
 
+var ReactGA = require('react-ga');
+ReactGA.initialize('UA-86523189-1');
+
 // Redux
 import appStore from '../store/appStore';
 import { Provider } from 'react-redux';
@@ -10,6 +13,12 @@ import { sendMail, fetchPage, fetchEntry, fetchTest, fetchTreatment, fetchPageAb
 import { About, Contact, Frontpage, Training, Treatments, Article, Employee, Service, Treatment, Doctor, NoMatch } from '../pages';
 
 const store = appStore();
+
+const onRouteUpdate = () => {
+    ReactGA.set({ page: window.location.pathname });
+    ReactGA.pageview(window.location.pathname);
+    window.scrollTo(0, 0);
+}
 
 const handleOnEnterIndex = () => {
     store.dispatch(fetchPage('index', 'pageIndex'));
@@ -138,7 +147,7 @@ class App extends Component {
     render() {
         return (
             <Provider store={store}>
-                <Router history={browserHistory} onUpdate={() => window.scrollTo(0, 0)}>
+                <Router history={browserHistory} onUpdate={onRouteUpdate}>
                     <Route
                         component={Frontpage}
                         onEnter={handleOnEnterIndex}

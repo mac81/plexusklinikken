@@ -7,7 +7,6 @@
     background-size: 0; //Hack
 
     @include bp(xlarge) {
-        //background-image: url(http://images.contentful.com/2omch4pe7no2/1WZKgnQV32uesUqIEqUisq/a4ddac45e472ae962ff75847896163c2/sore-neck.jpg);
         background-repeat: no-repeat;
         background-size: 50%;
         background-position: -40% bottom;

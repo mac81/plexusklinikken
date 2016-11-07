@@ -55,6 +55,7 @@
     "react": "^15.1.0",
     "react-burger-menu": "^1.9.0",
     "react-dom": "^15.1.0",
+    "react-ga": "^2.1.2",
     "react-redux": "^4.4.5",
     "react-remodal": "^1.0.3",
     "react-responsive": "^1.1.3",

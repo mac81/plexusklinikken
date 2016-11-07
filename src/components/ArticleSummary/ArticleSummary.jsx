@@ -17,14 +17,16 @@ class ArticleSummary extends Component {
         const articleClass = isEven ? ` ${styles.even} ${styles.articleSummary}` : `${styles.odd} ${styles.articleSummary}`;
 
         return (
-            <article className={styles.articleSummary} style={{backgroundImage: `url(${assets.image.fields.file.url})`}}>
-                <div className={styles.imageWrapper}>
-                    <img src={assets.image.fields.file.url} alt={assets.image.fields.file.fileName}/>
-                </div>
+            <article className={styles.articleSummary} style={assets.image && {backgroundImage: `url(${assets.image.fields.file.url})`}}>
+                {assets.image && (
+                    <div className={styles.imageWrapper}>
+                        <img src={assets.image.fields.file.url} alt={assets.image.fields.file.fileName}/>
+                    </div>
+                )}
                 <div className={styles.content}>
                     <h2 className="heading-medium">{article.fields.title}</h2>
                     <p className="excerpt">{article.fields.summary}</p>
-                    <div className="wysiwyg" dangerouslySetInnerHTML={{__html: marked(article.fields.body)}} />
+                    {/*<div className="wysiwyg" dangerouslySetInnerHTML={{__html: marked(article.fields.body)}} />*/}
                     <Link to={`/artikler/${article.sys.id}`} className="button button--winona" data-text="Les mer">
                         <span>Les mer</span>
                     </Link>

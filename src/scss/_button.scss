@@ -46,6 +46,14 @@
         }
     }
 
+    .inverted .button {
+        background-color: transparent;
+        border-color: #fff;
+        color: #fff;
+        span {
+            color: #fff;
+        }
+    }
 
     /* Winona */
     .button--winona {
@@ -81,8 +89,13 @@
     	background-color: $primary-color;
     }
 
-    .button--winona.inverted:hover {
+    .inverted .button--winona:hover {
     	border-color: #fff;
+    	background-color: #fff;
+    }
+
+    .button--winona.inverted:hover {
+        border-color: #fff;
     	background-color: #fff;
     }
 
@@ -91,6 +104,7 @@
     	transform: translate3d(0, 0, 0);
     }
 
+    .inverted .button--winona:hover::after,
     .button--winona.inverted:hover::after {
     	color: $primary-color;
     }

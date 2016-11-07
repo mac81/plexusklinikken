@@ -19,9 +19,11 @@ class ArticleBlock extends Component {
 
         return (
             <article className={articleClass}>
-                <div className={styles.imageWrapper}>
-                    <img src={assets.image.fields.file.url} alt={assets.image.fields.file.fileName}/>
-                </div>
+                {assets.image && (
+                    <div className={styles.imageWrapper}>
+                        <img src={assets.image.fields.file.url} alt={assets.image.fields.file.fileName}/>
+                    </div>
+                )}
                 <div className={styles.content}>
                     <h2 className="heading-medium">{article.fields.title}</h2>
                     <p className="excerpt">{article.fields.summary}</p>
