@@ -27,7 +27,9 @@ class Menu extends Component {
 
         const modalStyle = {
             width: matchMedia('only screen and (min-width: 1024px)').matches ? '60%' : '100%',
-            height: matchMedia('only screen and (max-width: 1024px)').matches ? '80%' : 'auto'
+            height: matchMedia('only screen and (max-width: 1024px)').matches ? '100%' : 'auto',
+            overflow: 'scroll',
+            backgroundColor: '#fff'
         };
 
         const backdropStyle = {
@@ -36,7 +38,7 @@ class Menu extends Component {
 
         const contentStyle = {
             height: '100%',
-            padding: '30px'
+            padding: matchMedia('only screen and (max-width: 1024px)').matches ? '10px' : '30px',
         };
 
         return (
