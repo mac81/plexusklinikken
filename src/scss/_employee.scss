@@ -34,13 +34,20 @@
 .image {
     position: relative;
     top: 80px;
+    width: 100%;
 
-    @media screen and (max-height:900px) {
+
+
+    @media screen and (min-width: $break-large) and (max-height:900px) {
         width: 80%;
     }
 
-    @media screen and (max-height:700px) {
+    @media screen and (min-width: $break-large) and (max-height:700px) {
         width: 70%;
+    }
+
+    @media screen and (min-width: $break-large) and (min-height:901px) {
+        width: 100%;
     }
 }
 
