@@ -202,7 +202,7 @@ class App extends Component {
                         onEnter={handleOnEnterEmployee}
                         onLeave={handleOnLeaveEmployee}
                     />
-                    <Route path="*" component={NoMatch}/>
+                    <Route path="*" component={Frontpage} onEnter={handleOnEnterIndex}/>
                 </Router>
             </Provider>
         );

@@ -47,8 +47,9 @@ class Frontpage extends Component {
 
         let firstArticle = this.props.articles ? this.props.articles[0] : null;
         let otherArticles = this.props.articles.filter((article, index) => {
-            return index > 0 ;
+            return article && index > 0 ;
         });
+        
         const Element = Scroll.Element;
 
         const modalStyle = {
@@ -93,7 +94,7 @@ class Frontpage extends Component {
                     </Element>
                 )}
 
-                {otherArticles.map((article, index) => (
+                {otherArticles && otherArticles.map((article, index) => (
                     <section key={article.sys.id} className="collapsed inverted">
                         <ArticleSummary article={article} index={index} />
                     </section>
