@@ -49,12 +49,12 @@ class Frontpage extends Component {
         let otherArticles = this.props.articles.filter((article, index) => {
             return article && index > 0 ;
         });
-        
+
         const Element = Scroll.Element;
 
         const modalStyle = {
-            width: matchMedia('only screen and (min-width: 1024px)').matches ? '60%' : '100%',
-            height: matchMedia('only screen and (max-width: 1024px)').matches ? '100%' : 'auto',
+            width: matchMedia('only screen and (min-width: 1280px)').matches ? '60%' : '100%',
+            height: matchMedia('only screen and (max-width: 1279px)').matches ? '100%' : 'auto',
             overflow: 'scroll',
             backgroundColor: '#fff'
         };
@@ -65,7 +65,7 @@ class Frontpage extends Component {
 
         const contentStyle = {
             height: '100%',
-            padding: matchMedia('only screen and (max-width: 1024px)').matches ? '10px' : '30px',
+            padding: matchMedia('only screen and (max-width: 1279px)').matches ? '10px' : '30px',
         };
 
         return (

@@ -104,6 +104,17 @@ function remapEmployees(res, state) {
     return employees;
 }
 
+function remapPrices(res, state) {
+    const prices = {};
+    res.items[0].fields.prices && res.items[0].fields.prices.map(price => {
+        if(!prices[price.sys.id]) {
+            prices[price.sys.id] = price;
+        }
+    });
+
+    return prices;
+}
+
 function remapPartners(res, state) {
     const partners = {};
     res.items[0].fields.partners && res.items[0].fields.partners.map(partner => {
@@ -149,7 +160,7 @@ function remapAssets(res, state) {
     const assets = state.assets;
     let pageAssets = {};
 
-    res.includes && res.includes.Asset.map(a => {
+    res.includes && res.includes.Asset && res.includes.Asset.map(a => {
         if(!assets[a.sys.id]) {
             assets[a.sys.id] = a;
         }
@@ -162,40 +173,6 @@ function remapAssets(res, state) {
     }
 }
 
-// function remapSections(res, state) {
-//     const sections = state.sections || [];
-//     const services = state.services || {};
-//     const treatments = state.treatments || {};
-//
-//     res.items[0].fields.sections.map(s => {
-//         const section = res.includes.Entry.find(e => e.sys.id === s.sys.id);
-//
-//         if(!sections[section.sys.id]) {
-//             sections.push(section.sys.id);
-//         }
-//
-//         section.fields[section.sys.contentType.sys.id].map(se => {
-//             const entry = res.includes.Entry.find(entry => entry.sys.id === se.sys.id);
-//             if(section.sys.contentType.sys.id === 'services') {
-//                 if(!services[entry.sys.id]) {
-//                     services[entry.sys.id] = entry;
-//                 }
-//             }
-//             if(section.sys.contentType.sys.id === 'treatments') {
-//                 if(!treatments[entry.sys.id]) {
-//                     treatments[entry.sys.id] = entry;
-//                 }
-//             }
-//         });
-//     });
-//
-//     return {
-//         sections,
-//         services,
-//         treatments
-//     }
-// }
-
 export function fetchPage(page, contentType) {
     return (dispatch, getState) => {
 
@@ -207,7 +184,7 @@ export function fetchPage(page, contentType) {
         })
 
         let solidMenu = false;
-        if(page === 'doctor' || page === 'about' || page === 'contact') {
+        if(page === 'doctor' || page === 'about' || page === 'contact' || page === 'prices') {
             solidMenu = true;
         }
 
@@ -227,16 +204,19 @@ export function fetchPage(page, contentType) {
 
                     const pages = state.pages;
                     //const sections = res.items[0].fields.sections && remapSections(res, state);
-                    const articles = remapArticles(res, state);
-                    const introArticle = remapIntroArticle(res, state);
+                    const articles = res.items.length ? remapArticles(res, state) : null;
+                    const introArticle = res.items.length ? remapIntroArticle(res, state) : null;
 
-                    const treatments = res.items[0].fields.treatments && remapTreatments(res, res.items[0].fields.treatments.sys.id);
-                    const services = res.items[0].fields.services && remapServices(res, res.items[0].fields.services.sys.id);
+                    const treatments = res.items.length && res.items[0].fields.treatments ? remapTreatments(res, res.items[0].fields.treatments.sys.id) : null;
+                    const services = res.items.length && res.items[0].fields.services ? remapServices(res, res.items[0].fields.services.sys.id) : null;
+                    //const prices = res.items.length && res.items[0].fields.prices ? remapPrices(res, res.items[0].fields.prices.sys.id) : null;
 
-                    const employees = remapEmployees(res, state);
-                    const partners = remapPartners(res, state);
-                    const entries = remapEntries(res, state);
-                    const assets = remapAssets(res, state);
+
+                    const employees = res.items.length ? remapEmployees(res, state) : null;
+                    const prices = res.items.length ? remapPrices(res, state) : null;
+                    const partners = res.items.length ? remapPartners(res, state) : null;
+                    const entries = res.items.length ? remapEntries(res, state) : null;
+                    const assets = res.items.length ? remapAssets(res, state) : null;
 
                     if(!state.pages[page]) {
                         pages[page] = {
@@ -255,6 +235,7 @@ export function fetchPage(page, contentType) {
                         }
                         //sections.sections ? pages[page].sections = sections.sections : null;
                         treatments ? pages[page].treatments = Object.keys(treatments) : null;
+
                         services ? pages[page].services = {
                             title: services.title,
                             items: Object.keys(services.items)
@@ -276,6 +257,9 @@ export function fetchPage(page, contentType) {
 
                         //Employees
                         Object.keys(employees).length ? pages[page].employees = Object.keys(employees) : null;
+
+                        //Prices
+                        Object.keys(prices).length ? pages[page].prices = Object.keys(prices) : null;
 
                         //Partners
                         res.items[0].fields.titlePartners ? pages[page].titlePartners = res.items[0].fields.titlePartners : null;

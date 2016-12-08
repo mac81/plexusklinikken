@@ -26,8 +26,8 @@ class Menu extends Component {
         //let wrapperClass = styles.menu_wrapper + ' ' + styles.inverted;
 
         const modalStyle = {
-            width: matchMedia('only screen and (min-width: 1024px)').matches ? '60%' : '100%',
-            height: matchMedia('only screen and (max-width: 1024px)').matches ? '100%' : 'auto',
+            width: matchMedia('only screen and (min-width: 1280px)').matches ? '60%' : '100%',
+            height: matchMedia('only screen and (max-width: 1279px)').matches ? '100%' : 'auto',
             overflow: 'scroll',
             backgroundColor: '#fff'
         };
@@ -38,7 +38,7 @@ class Menu extends Component {
 
         const contentStyle = {
             height: '100%',
-            padding: matchMedia('only screen and (max-width: 1024px)').matches ? '10px' : '30px',
+            padding: matchMedia('only screen and (max-width: 1279px)').matches ? '10px' : '30px',
         };
 
         return (
@@ -49,6 +49,7 @@ class Menu extends Component {
                         <li><Link className={this.props.pathname === '/behandlinger' ? styles.active : null} to="/behandlinger">Behandlingstilbud</Link></li>
                         <li><Link className={this.props.pathname === '/legekontor' ? styles.active : null} to="/legekontor">Ski Legesenter</Link></li>
                         <li><Link className={this.props.pathname === '/trening' ? styles.active : null} to="/trening">Plexus Trening</Link></li>
+                        <li><Link className={this.props.pathname === '/priser' ? styles.active : null} to="/priser">Priser</Link></li>
                         <li><Link className={this.props.pathname === '/om' ? styles.active : null} to="/om">Om oss</Link></li>
                         <li><Link className={this.props.pathname === '/kontakt' ? styles.active : null} to="/kontakt">Kontakt oss</Link></li>
                     </ul>

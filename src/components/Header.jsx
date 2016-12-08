@@ -41,7 +41,7 @@ class Header extends Component {
 
         return (
             <header className={headerClass}>
-                <MediaQuery query='(max-width: 1023px)'>
+                <MediaQuery query='(max-width: 1279px)'>
                     <Link to="/" className="logo">
                         <img className="logo-image" src="/gfx/logo-blue.png" />
                     </Link>
@@ -50,7 +50,7 @@ class Header extends Component {
                     </BurgerMenu>
                 </MediaQuery>
 
-                <MediaQuery query='(min-width: 1024px)'>
+                <MediaQuery query='(min-width: 1280px)'>
                     <Link to="/" className="logo">
                         <img className="logo-image" src="/gfx/logo-blue.png" />
                     </Link>

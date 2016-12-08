@@ -13,3 +13,4 @@ export Doctor from './Doctor';
 export Employee from './Employee';
 export Service from './Service';
 export Treatment from './Treatment';
+export Prices from './Prices';

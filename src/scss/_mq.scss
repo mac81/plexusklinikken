@@ -1,7 +1,7 @@
 $break-small: 320px;
 $break-medium: 680px;
 $break-large: 1024px;
-$break-xlarge: 1240px;
+$break-xlarge: 1280px;
 
 @mixin bp($media) {
   @if $media == 'small' {

@@ -10,7 +10,7 @@ import { Provider } from 'react-redux';
 import { sendMail, fetchPage, fetchEntry, fetchTest, fetchTreatment, fetchPageAbout, fetchPageTreatments, fetchEmployees, setActiveTreatment, setActiveService } from '../actions/appActions';
 
 // Pages
-import { About, Contact, Frontpage, Training, Treatments, Article, Employee, Service, Treatment, Doctor, NoMatch } from '../pages';
+import { About, Contact, Frontpage, Training, Treatments, Article, Employee, Service, Treatment, Doctor, Prices, NoMatch } from '../pages';
 
 const store = appStore();
 
@@ -93,6 +93,10 @@ const handleOnLeaveService = () => {
 
 const handleOnEnterTraining = (e) => {
     store.dispatch(fetchPage('training', 'pageTraining'));
+}
+
+const handleOnEnterPrices = (e) => {
+    store.dispatch(fetchPage('prices', 'pagePrices'));
 }
 
 const handleOnEnterArticle = (e) => {
@@ -184,6 +188,11 @@ class App extends Component {
                         component={Training}
                         onEnter={handleOnEnterTraining}
                         path="/trening"
+                    />
+                    <Route
+                        component={Prices}
+                        onEnter={handleOnEnterPrices}
+                        path="/priser"
                     />
                     <Route
                         component={Contact}

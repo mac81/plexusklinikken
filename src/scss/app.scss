@@ -52,6 +52,79 @@
         max-width: 100%;
     }
 
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #fff;
+        table-layout: fixed;
+
+        th {
+            padding: 20px;
+            background-color: $primary-color;
+            color: #fff;
+            text-align: center;
+            &:first-child {
+                text-align: left;
+            }
+        }
+
+        tr:last-child {
+            td {
+                border: none;
+            }
+        }
+
+        td {
+            padding: 20px;
+            vertical-align: top;
+            border-bottom: 1px solid #efefef;
+            text-align: center;
+
+            &:first-child {
+                text-align: left;
+            }
+
+            // &:last-child {
+            //     text-align: right;
+            // }
+        }
+    }
+
+    .prices {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 40px;
+    }
+
+    .price-item {
+        width: 100%;
+        //padding: 0 40px;
+        margin: 0 0 40px 0;
+    }
+
+    .price-treatment {
+        font-size: 20px;
+        width: 50%;
+    }
+
+    .price-header {
+        font-size: 14px;
+    }
+
+    .price-text {
+        color: #717171;
+    }
+
+    .price {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .member-price {
+        font-size: 20px;
+        //font-weight: bold;
+    }
+
     .logo {
         padding: 0 30px;
         @include bp(large) {
