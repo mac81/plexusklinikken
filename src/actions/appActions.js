@@ -312,8 +312,10 @@ export function fetchEntry(contentType, id) {
 
         client.getEntries({content_type: contentType, include: 2, 'sys.id': id})
             .then(function (res) {
+                
                 const entries = remapEntries(res, getState());
                 const assets = remapAssets(res, getState());
+
                 dispatch({
                     type: 'SET_ENTRY',
                     entries: entries.entries,

@@ -94,11 +94,14 @@ class Frontpage extends Component {
                     </Element>
                 )}
 
-                {otherArticles && otherArticles.map((article, index) => (
-                    <section key={article.sys.id} className="collapsed inverted">
-                        <ArticleSummary article={article} index={index} />
-                    </section>
-                ))}
+                {otherArticles && otherArticles.map((article, index) => {
+                    var className = (index % 2 === 0) ? 'collapsed inverted' : 'collapsed'
+                    return (
+                        <section key={article.sys.id} className={className}>
+                            <ArticleSummary article={article} index={index} />
+                        </section>
+                    )
+                })}
 
                 <Modal ref="modal" keyboard={this.callback} modalStyle={modalStyle} backdropStyle={backdropStyle} contentStyle={contentStyle}>
                     <div className={modalStyles.container}>
