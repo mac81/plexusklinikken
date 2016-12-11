@@ -59,12 +59,16 @@
         table-layout: fixed;
 
         th {
-            padding: 20px;
+            padding: 10px;
             background-color: $primary-color;
             color: #fff;
             text-align: center;
             &:first-child {
                 text-align: left;
+            }
+
+            @include bp(large) {
+                padding: 20px;
             }
         }
 
@@ -75,13 +79,17 @@
         }
 
         td {
-            padding: 20px;
+            padding: 10px;
             vertical-align: top;
             border-bottom: 1px solid #efefef;
             text-align: center;
 
             &:first-child {
                 text-align: left;
+            }
+
+            @include bp(large) {
+                padding: 20px;
             }
 
             // &:last-child {
@@ -103,12 +111,19 @@
     }
 
     .price-treatment {
-        font-size: 20px;
-        width: 50%;
+        font-size: 16px;
+        width: 40%;
+        @include bp(large) {
+            font-size: 20px;
+            width: 50%;
+        }
     }
 
     .price-header {
-        font-size: 14px;
+        font-size: 12px;
+        @include bp(large) {
+            font-size: 14px;
+        }
     }
 
     .price-text {
@@ -116,13 +131,18 @@
     }
 
     .price {
-        font-size: 20px;
+        font-size: 18px;
         font-weight: bold;
+        @include bp(large) {
+            font-size: 20px;
+        }
     }
 
     .member-price {
-        font-size: 20px;
-        //font-weight: bold;
+        font-size: 18px;
+        @include bp(large) {
+            font-size: 20px;
+        }
     }
 
     .logo {
@@ -190,9 +210,18 @@
             background-color: #fff;
         }
 
+        &.section-prices {
+            padding: 20px;
+            @include bp(large) {
+                padding: 80px 80px;
+            }
+        }
+
         &.first {
             padding-top: 130px;
         }
+
+
 
         // article {
         //     max-width: 100%;

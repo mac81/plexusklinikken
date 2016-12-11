@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { values } from 'lodash';
+import matchMedia from 'matchmedia';
 
 // Layout
 import Layout from '../components/Layout';
@@ -13,7 +14,7 @@ class Prices extends Component {
     render() {
         return (
             <Layout location={this.props.location}>
-                <section className="first">
+                <section className="first section-prices">
                     <article className="container">
                         <div className="article-content">
                             <h1 className="heading-xlarge centered">{this.props.pageTitle}</h1>
@@ -25,7 +26,7 @@ class Prices extends Component {
                                     <table>
                                         <thead>
                                             <tr>
-                                                <th className="price-treatment">{entry.fields.treatment}</th>
+                                                <th className="price-treatment">{(matchMedia('only screen and (max-width: 580px)').matches && entry.fields.treatment.indexOf('Trykk') !== -1) ? entry.fields.treatment.substring(0, 10) + '-' + entry.fields.treatment.substring(10, entry.fields.treatment.length) : entry.fields.treatment}</th>
                                                 <th className="price-header">Ordinær</th>
                                                 <th className="price-header">Medlemmer</th>
                                             </tr>
@@ -33,7 +34,7 @@ class Prices extends Component {
                                         <tbody>
                                             {entry.fields.priceText && entry.fields.priceText.map((pt, i) => (
                                                 <tr key={i}>
-                                                    <td className="price-text">{pt}</td>
+                                                    <td className="price-text">{(matchMedia('only screen and (max-width: 580px)').matches && pt.indexOf('konsultasjon') !== -1) ? pt.substring(0, 11) + '-' + pt.substring(11, pt.length) : pt}</td>
                                                     <td className="price">{`${entry.fields.prices[i]},-`}</td>
                                                     {entry.fields.memberPrice && (
                                                         <td className="member-price">{`${entry.fields.memberPrice[i]},-`}</td>
