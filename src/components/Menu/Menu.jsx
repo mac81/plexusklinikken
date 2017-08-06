@@ -49,6 +49,7 @@ class Menu extends Component {
                         <li><Link className={this.props.pathname === '/behandlinger' ? styles.active : null} to="/behandlinger">Behandlingstilbud</Link></li>
                         <li><Link className={this.props.pathname === '/legekontor' ? styles.active : null} to="/legekontor">Ski Legesenter</Link></li>
                         <li><Link className={this.props.pathname === '/trening' ? styles.active : null} to="/trening">Plexus Trening</Link></li>
+                        <li><Link className={this.props.pathname === '/morogbarn' ? styles.active : null} to="/morogbarn">Mor & Barn</Link></li>
                         <li><Link className={this.props.pathname === '/priser' ? styles.active : null} to="/priser">Priser</Link></li>
                         <li><Link className={this.props.pathname === '/om' ? styles.active : null} to="/om">Om oss</Link></li>
                         <li><Link className={this.props.pathname === '/kontakt' ? styles.active : null} to="/kontakt">Kontakt oss</Link></li>

@@ -1,16 +1,29 @@
 import React, { Component } from 'react';
 import { Router, Route, browserHistory } from 'react-router';
 
-var ReactGA = require('react-ga');
-ReactGA.initialize('UA-86523189-1');
-
 // Redux
 import appStore from '../store/appStore';
 import { Provider } from 'react-redux';
-import { sendMail, fetchPage, fetchEntry, fetchTest, fetchTreatment, fetchPageAbout, fetchPageTreatments, fetchEmployees, setActiveTreatment, setActiveService } from '../actions/appActions';
+import { fetchPage, fetchEntry } from '../actions/appActions';
 
 // Pages
-import { About, Contact, Frontpage, Training, Treatments, Article, Employee, Service, Treatment, Doctor, Prices, NoMatch } from '../pages';
+import {
+    About,
+    Article,
+    Contact,
+    Doctor,
+    Employee,
+    Frontpage,
+    NoMatch,
+    Prices,
+    Service,
+    Training,
+    Treatment,
+    Treatments
+} from '../pages';
+
+const ReactGA = require('react-ga');
+ReactGA.initialize('UA-86523189-1');
 
 const store = appStore();
 
@@ -20,22 +33,31 @@ const onRouteUpdate = () => {
     window.scrollTo(0, 0);
 }
 
-const handleOnEnterIndex = () => {
-    store.dispatch(fetchPage('index', 'pageIndex'));
-    //store.dispatch(fetchTest());
-    //store.dispatch(sendMail());
+const handleOnEnterPage = (page, contentType) => {
+    console.log(page, contentType);
+    store.dispatch(fetchPage(page, contentType));
 }
 
-const handleOnEnterAbout = () => {
-    store.dispatch(fetchPage('about', 'employees'));
+const handleOnEnterSingleItem = (e, entry) => {
+    const state = store.getState();
+    const id = e.params.id;
+
+    if(!state.pages[state.activePage]) {
+        store.dispatch(fetchEntry(entry, id));
+    }
+
+    store.dispatch({
+        type: 'SET_ACTIVE_ENTRY',
+        id: id,
+        solidMenu: true
+    });
 }
 
-const handleOnEnterTreatments = () => {
-    store.dispatch(fetchPage('treatments', 'sideBehandlingstilbud'));
-}
-
-const handleOnEnterDoctor = () => {
-    store.dispatch(fetchPage('doctor', 'pageDoctor'));
+const handleOnLeaveSingleItem = () => {
+    store.dispatch({
+        type: 'SET_ACTIVE_ENTRY',
+        id: null
+    });
 }
 
 const handleOnEnterTreatment = (e) => {
@@ -50,103 +72,6 @@ const handleOnEnterTreatment = (e) => {
     });
 }
 
-const handleOnLeaveTreatment = () => {
-    // store.dispatch({
-    //     type: 'SET_ACTIVE_ENTRY',
-    //     id: null
-    // });
-}
-
-const handleOnEnterService = (e) => {
-    // store.dispatch({
-    //     type: 'SET_PAGE',
-    //     id: 'pageTreatments'
-    // })
-    // if(Object.keys(store.getState().pageTreatments).length === 0 && store.getState().pageTreatments.constructor === Object) {
-    //     store.dispatch(fetchPageTreatments());
-    // }
-    // store.dispatch(setActiveService(e.params.slug));
-    // // if(!store.getState().services) {
-    // //     store.dispatch(fetchTreatments());
-    // //     store.dispatch(setActiveService(e.params.slug));
-    // // }
-    const state = store.getState();
-    const id = e.params.id;
-
-    if(!state.pages[state.activePage]) {
-        store.dispatch(fetchEntry('service', id));
-    }
-
-    store.dispatch({
-        type: 'SET_ACTIVE_ENTRY',
-        id: id,
-        solidMenu: true
-    });
-}
-
-const handleOnLeaveService = () => {
-    store.dispatch({
-        type: 'SET_ACTIVE_ENTRY',
-        id: null
-    });
-}
-
-const handleOnEnterTraining = (e) => {
-    store.dispatch(fetchPage('training', 'pageTraining'));
-}
-
-const handleOnEnterPrices = (e) => {
-    store.dispatch(fetchPage('prices', 'pagePrices'));
-}
-
-const handleOnEnterArticle = (e) => {
-    const state = store.getState();
-    const id = e.params.id;
-
-    if(!state.pages[state.activePage]) {
-        store.dispatch(fetchEntry('article', id));
-    }
-
-    store.dispatch({
-        type: 'SET_ACTIVE_ENTRY',
-        id: id,
-        solidMenu: true
-    });
-}
-
-const handleOnLeaveArticle = () => {
-    store.dispatch({
-        type: 'SET_ACTIVE_ENTRY',
-        id: null
-    });
-}
-
-const handleOnEnterEmployee = (e) => {
-    const state = store.getState();
-    const id = e.params.id;
-
-    if(!state.pages[state.activePage]) {
-        store.dispatch(fetchEntry('employee', id));
-    }
-
-    store.dispatch({
-        type: 'SET_ACTIVE_ENTRY',
-        id: id,
-        solidMenu: true
-    });
-}
-
-const handleOnLeaveEmployee = () => {
-    store.dispatch({
-        type: 'SET_ACTIVE_ENTRY',
-        id: null
-    });
-}
-
-const handleOnEnterContact = () => {
-    store.dispatch(fetchPage('contact', 'pageContact'));
-}
-
 class App extends Component {
     render() {
         return (
@@ -154,64 +79,69 @@ class App extends Component {
                 <Router history={browserHistory} onUpdate={onRouteUpdate}>
                     <Route
                         component={Frontpage}
-                        onEnter={handleOnEnterIndex}
+                        onEnter={() => handleOnEnterPage('index', 'pageIndex')}
                         path="/"
                     />
                     <Route
                         component={Treatments}
-                        onEnter={handleOnEnterTreatments}
+                        onEnter={() => handleOnEnterPage('treatments', 'sideBehandlingstilbud')}
                         path="/behandlinger"
                     />
                     <Route
                         component={Doctor}
-                        onEnter={handleOnEnterDoctor}
+                        onEnter={() => handleOnEnterPage('doctor', 'pageDoctor')}
                         path="/Legekontor"
+                    />
+                    <Route
+                        component={About}
+                        onEnter={() => handleOnEnterPage('about', 'employees')}
+                        path="/om"
+                    />
+                    <Route
+                        component={Training}
+                        onEnter={() => handleOnEnterPage('training', 'pageTraining')}
+                        path="/trening"
+                    />
+                    <Route
+                        component={Training}
+                        onEnter={() => handleOnEnterPage('motherAndChild', 'pageMotherAndChild')}
+                        path="/morogbarn"
+                    />
+                    <Route
+                        component={Prices}
+                        onEnter={() => handleOnEnterPage('prices', 'pagePrices')}
+                        path="/priser"
+                    />
+                    <Route
+                        component={Contact}
+                        onEnter={() => handleOnEnterPage('contact', 'pageContact')}
+                        path="/kontakt"
                     />
                     <Route
                         path="behandlinger/:id"
                         component={Treatment}
                         onEnter={handleOnEnterTreatment}
-                        onLeave={handleOnLeaveTreatment}
+                        onLeave={handleOnLeaveSingleItem}
                     />
                     <Route
                         path="tjenester/:id"
                         component={Service}
-                        onEnter={handleOnEnterService}
-                        onLeave={handleOnLeaveService}
-                    />
-                    <Route
-                        component={About}
-                        onEnter={handleOnEnterAbout}
-                        path="/om"
-                    />
-                    <Route
-                        component={Training}
-                        onEnter={handleOnEnterTraining}
-                        path="/trening"
-                    />
-                    <Route
-                        component={Prices}
-                        onEnter={handleOnEnterPrices}
-                        path="/priser"
-                    />
-                    <Route
-                        component={Contact}
-                        onEnter={handleOnEnterContact}
-                        path="/kontakt"
+                        onEnter={(e) => handleOnEnterSingleItem(e, 'service')}
+                        onLeave={handleOnLeaveSingleItem}
                     />
                     <Route
                         path="artikler/:id"
                         component={Article}
-                        onEnter={handleOnEnterArticle}
-                        onLeave={handleOnLeaveArticle}
+                        onEnter={(e) => handleOnEnterSingleItem(e, 'article')}
+                        onLeave={handleOnLeaveSingleItem}
                     />
                     <Route
                         path="ansatte/:id"
                         component={Employee}
-                        onEnter={handleOnEnterEmployee}
-                        onLeave={handleOnLeaveEmployee}
+                        onEnter={(e) => handleOnEnterSingleItem(e, 'employee')}
+                        onLeave={handleOnLeaveSingleItem}
                     />
-                    <Route path="*" component={Frontpage} onEnter={handleOnEnterIndex}/>
+                    <Route path="*" component={Frontpage} onEnter={() => handleOnEnterPage('index', 'pageIndex')}/>
                 </Router>
             </Provider>
         );

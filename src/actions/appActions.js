@@ -1,38 +1,4 @@
 import contentful from 'contentful';
-import $ from 'jquery';
-
-// function remapArticles(res, state) {
-//     const key = state.articles;
-//     const pageKey = {};
-//
-//     res.items[0].fields.articles.map(a => {
-//         if(!key[a.sys.id]) {
-//             key[a.sys.id] = a;
-//         }
-//         pageKey[a.sys.id] = a;
-//     });
-//
-//     return {
-//         key,
-//         pageKey
-//     }
-// }
-
-// function remapTreatments(res, state) {
-//     const key = state.treatments;
-//     const pageKey = {};
-//     res.items[0].fields.treatments && res.items[0].fields.treatments.map(a => {
-//         if(!key[a.sys.id]) {
-//             key[a.sys.id] = a;
-//         }
-//         pageKey[a.sys.id] = a;
-//     });
-//
-//     return {
-//         key,
-//         pageKey
-//     }
-// }
 
 function remapArticles(res) {
     const articles = {};
@@ -52,17 +18,6 @@ function remapIntroArticle(res) {
 
     return introArticle;
 }
-
-// function remapTreatments(res) {
-//     const treatments = {};
-//     res.items[0].fields.treatments && res.items[0].fields.treatments.map(a => {
-//         if(!treatments[a.sys.id]) {
-//             treatments[a.sys.id] = a;
-//         }
-//     });
-//
-//     return treatments;
-// }
 
 function remapTreatments(res, id) {
     const entry = res.includes.Entry.find(e => e.sys.id === id)
@@ -195,22 +150,15 @@ export function fetchPage(page, contentType) {
         })
 
         if(!state.pages[page]) {
-            // dispatch({
-            //     type: 'IS_LOADING',
-            //     isLoading: true
-            // })
             client.getEntries({content_type: contentType, include: 3})
                 .then(function (res) {
 
                     const pages = state.pages;
-                    //const sections = res.items[0].fields.sections && remapSections(res, state);
                     const articles = res.items.length ? remapArticles(res, state) : null;
                     const introArticle = res.items.length ? remapIntroArticle(res, state) : null;
 
                     const treatments = res.items.length && res.items[0].fields.treatments ? remapTreatments(res, res.items[0].fields.treatments.sys.id) : null;
                     const services = res.items.length && res.items[0].fields.services ? remapServices(res, res.items[0].fields.services.sys.id) : null;
-                    //const prices = res.items.length && res.items[0].fields.prices ? remapPrices(res, res.items[0].fields.prices.sys.id) : null;
-
 
                     const employees = res.items.length ? remapEmployees(res, state) : null;
                     const prices = res.items.length ? remapPrices(res, state) : null;
@@ -221,19 +169,10 @@ export function fetchPage(page, contentType) {
                     if(!state.pages[page]) {
                         pages[page] = {
                             id: page,
-                            // title: res.items[0].fields.title,
-                            // summary: res.items[0].fields.summary,
-                            //articles: Object.keys(articles),
-                            //introArticle: Object.keys(introArticle),
-                            //sections: sections.sections,
-                            //treatments: Object.keys(treatments),
-                            //employees: Object.keys(employees),
-                            //partners: Object.keys(partners),
-                            //services: Object.keys(services),
                             entries: Object.keys(entries.pageEntries),
                             assets: Object.keys(assets.pageAssets)
                         }
-                        //sections.sections ? pages[page].sections = sections.sections : null;
+
                         treatments ? pages[page].treatments = Object.keys(treatments) : null;
 
                         services ? pages[page].services = {
@@ -287,32 +226,17 @@ export function fetchPage(page, contentType) {
     }
 }
 
-export function fetchTest(id) {
-    return (dispatch, getState) => {
-
-        var client = contentful.createClient({
-            space: '2omch4pe7no2',
-            accessToken: '6274e3bdae4a785f1e1056c870a301b6a7d8bc893e69655354fc6ec439343fe6'
-        })
-
-        client.getEntries({content_type: 'treatment', 'fields.treatmentType': 'fysioterapi'})
-            .then(function (res) {
-                //console.log(res);
-            })
-    }
-}
-
 export function fetchEntry(contentType, id) {
     return (dispatch, getState) => {
 
-        var client = contentful.createClient({
+        const client = contentful.createClient({
             space: '2omch4pe7no2',
             accessToken: '6274e3bdae4a785f1e1056c870a301b6a7d8bc893e69655354fc6ec439343fe6'
         })
 
         client.getEntries({content_type: contentType, include: 2, 'sys.id': id})
             .then(function (res) {
-                
+
                 const entries = remapEntries(res, getState());
                 const assets = remapAssets(res, getState());
 
@@ -322,48 +246,5 @@ export function fetchEntry(contentType, id) {
                     assets: assets.assets
                 })
             })
-    }
-}
-
-
-
-//
-//
-//
-//
-// export function setActiveTreatment(key) {
-//     return (dispatch) => {
-//         dispatch({
-//             type: 'SET_ACTIVE_TREATMENT',
-//             key: key
-//         })
-//     }
-// }
-//
-// export function setActiveService(slug) {
-//     return (dispatch) => {
-//         dispatch({
-//             type: 'SET_ACTIVE_SERVICE',
-//             slug: slug
-//         })
-//     }
-// }
-
-export function setArticle(id) {
-    return (dispatch) => {
-        dispatch({
-            type: 'SET_ARTICLE',
-            id: id
-        })
-    }
-}
-
-export function sendMail() {
-    return (dispatch) => {
-        $.ajax({
-            url: "https://plexusklinikken-api.herokuapp.com/api"
-        }).done(function() {
-            console.log('ajax complete');
-        });
     }
 }

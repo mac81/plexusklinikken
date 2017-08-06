@@ -1,8 +1,6 @@
 const initialState = {
     isLoading: false,
     activePage: 'index',
-    //articles: {},
-    //services: {},
     pages: {},
     entries: {},
     assets: {}
@@ -21,20 +19,16 @@ export default function app(state = initialState, action) {
                 solidMenu: action.solidMenu
             }
 
-        // case 'SET_PAGE':
-        //     return {...state,
-        //         activePage: action.id
-        //     }
-
-        // case 'SET_ARTICLE':
-        //     return {...state,
-        //         activeArticle: action.id
-        //     }
-        //
         case 'SET_ENTRY':
             return {...state,
                 entries: action.entries,
                 assets: action.assets
+            }
+
+        case 'SET_ACTIVE_PAGE':
+            return {...state,
+                activePage: action.activePage,
+                solidMenu: action.solidMenu
             }
 
         case 'SET_PAGE':
@@ -44,70 +38,6 @@ export default function app(state = initialState, action) {
                 assets: action.assets,
                 isLoading: false
             }
-
-        case 'SET_ACTIVE_PAGE':
-            return {...state,
-                activePage: action.activePage,
-                solidMenu: action.solidMenu
-            }
-
-        // case 'SET_ARTICLES':
-        //     return {...state,
-        //         entries: action.entries,
-        //         assets: action.assets
-        //     }
-
-        // case 'SET_PAGE_INDEX':
-        //     return {...state,
-        //         pageIndex: {
-        //             id: action.id,
-        //             pageTitle: action.pageTitle,
-        //             pageSummary: action.pageSummary,
-        //             articles: action.articles,
-        //             entries: action.entries,
-        //             assets: action.assets
-        //         }
-        //     }
-        //
-        // case 'SET_PAGE_ABOUT':
-        //     return {...state,
-        //         pageAbout: {
-        //             pageTitle: action.pageTitle,
-        //             pageSummary: action.pageSummary,
-        //             articles: action.articles,
-        //             employees: action.employees,
-        //             partners: action.partners,
-        //             entries: action.entries,
-        //             assets: action.assets
-        //         }
-        //     }
-        //
-        // case 'SET_PAGE_TREATMENTS':
-        //     return {...state,
-        //         pageTreatments: {
-        //             pageTitle: action.pageTitle,
-        //             pageSummary: action.pageSummary,
-        //             treatments: action.treatments,
-        //             services: action.services,
-        //             articles: action.articles,
-        //             employees: action.employees,
-        //             entries: action.entries,
-        //             assets: action.assets
-        //         }
-        //     }
-        //
-        // case 'SET_EMPLOYEES':
-        //     return {...state,
-        //         employees: action.employees,
-        //         employeeEntries: action.entries,
-        //         employeeAssets: action.assets
-        //     }
-        //
-        // case 'SET_ACTIVE_TREATMENT':
-        //     return {...state, activeTreatment: action.key}
-        //
-        // case 'SET_ACTIVE_SERVICE':
-        //     return {...state, activeService: action.slug}
 
         default:
             return state;
