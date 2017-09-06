@@ -5,14 +5,17 @@ import { colors } from "../variables/colors";
 
 class Anchor extends Component {
   render() {
-    const { id, pathname, as, children } = this.props;
+    const { href, as, style: { inverted }, children } = this.props;
 
     return (
-      <Link
-        as={`/${as}/${id}`}
-        href={{ pathname: `/${pathname}`, query: { id: id } }}
-      >
-        <a className={css(styles.anchor)} data-text={children}>
+      <Link as={as} href={href}>
+        <a
+          className={css(
+            styles.anchor,
+            inverted ? styles.inverted : styles.normal
+          )}
+          data-text={children}
+        >
           {children}
         </a>
       </Link>
@@ -23,10 +26,18 @@ class Anchor extends Component {
 const styles = StyleSheet.create({
   anchor: {
     display: "inline-block",
-    border: `1px solid ${colors.darkBlue}`,
+
     padding: "13px 29px",
-    color: colors.darkBlue,
+
     fontSize: "15px"
+  },
+  normal: {
+    border: `1px solid ${colors.darkBlue}`,
+    color: colors.darkBlue
+  },
+  inverted: {
+    border: `1px solid #fff`,
+    color: "#fff"
   },
   articleContent: {
     padding: "30px",

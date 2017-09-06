@@ -41,7 +41,11 @@ class ArticleSummary extends Component {
             {summary}
           </p>
 
-          <Anchor pathname="article" as="artikler" id={id}>
+          <Anchor
+            href={{ pathname: "/article", query: { id: id } }}
+            as={`/artikler/${id}`}
+            style={{ inverted: index % 2 === 1 ? true : false }}
+          >
             Les mer
           </Anchor>
 

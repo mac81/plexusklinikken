@@ -19,6 +19,7 @@
     "marked": "^0.3.6",
     "next": "^3.0.6",
     "react": "^15.5.4",
+    "react-burger-menu": "^2.1.5",
     "react-dom": "^15.6.1"
   },
   "devDependencies": {

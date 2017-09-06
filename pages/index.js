@@ -1,6 +1,7 @@
 import fetch from "isomorphic-unfetch";
 import { createClient } from "contentful";
 import Link from "next/link";
+import { StyleSheet, css } from "aphrodite";
 
 import Layout from "../layouts/Layout";
 import PageIntro from "@/components/PageIntro";
@@ -19,8 +20,10 @@ export class Index extends React.Component {
       .then(function(response) {
         return {
           response: response,
-          // title: response.items[0].fields.title,
-          // backgroundImage: response.items[0].fields.backgroundImage.fields.file.url,
+          title: response.items[0].fields.title,
+          summary: response.items[0].fields.summary,
+          backgroundImage:
+            response.items[0].fields.backgroundImage.fields.file.url,
           articles: response.items[0].fields.articles.filter(
             article => article.fields
           )
@@ -33,18 +36,19 @@ export class Index extends React.Component {
   render() {
     console.log(this.props);
 
-    const { title, backgroundImage, articles } = this.props;
+    const { title, summary, backgroundImage, articles } = this.props;
 
     return (
       <Layout>
         <PageIntro backgroundImage={backgroundImage}>
-          {title && <h1>{title}</h1>}
-          {this.props.pageSummary && <h2>{this.props.pageSummary}</h2>}
-          <ul className="list">
-            <li>
+          <h1 className={css(styles.heading)}>{title}</h1>
+          <h2 className={css(styles.subHeading)}>{summary}</h2>
+          <ul className={css(styles.actions)}>
+            <li className={css(styles.actionItem)}>
+              Bestill time
               {/*<ModalButton frontpage={true} text="Bestill time" target="modal" onClick={this.showModal}/>*/}
             </li>
-            <li>
+            <li className={css(styles.actionItem)}>
               <Link
                 href="/behandlinger"
                 className="button button--winona inverted"
@@ -53,7 +57,7 @@ export class Index extends React.Component {
                 <a>Behandlingstilbud</a>
               </Link>
             </li>
-            <li>
+            <li className={css(styles.actionItem)}>
               <Link
                 href="/trening"
                 className="button button--winona inverted"
@@ -78,5 +82,29 @@ export class Index extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  heading: {
+    fontSize: "112px",
+    color: "#fff",
+    margin: "0 0 10px 0"
+  },
+  subHeading: {
+    fontSize: "34px",
+    color: "#fff",
+    margin: "0 0 30px 0"
+  },
+  actions: {
+    margin: 0,
+    padding: 0,
+    listStyleType: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  actionItem: {
+    padding: "0 30px"
+  }
+});
 
 export default Index;

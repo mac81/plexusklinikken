@@ -1,11 +1,10 @@
-import fetch from 'isomorphic-unfetch';
-import {createClient} from 'contentful';
-import Link from 'next/link';
+import fetch from "isomorphic-unfetch";
+import { createClient } from "contentful";
+import Link from "next/link";
 
-import Layout from '../layouts/Layout';
+import Layout from "../layouts/Layout";
 
 export class Treatments extends React.Component {
-
   // static async getInitialProps({req}) {
   //   const client = createClient({
   //     space: '2omch4pe7no2',
@@ -30,7 +29,7 @@ export class Treatments extends React.Component {
   render() {
     console.log(this.props);
 
-    const {treatments} = this.props;
+    const { treatments } = this.props;
 
     return (
       <Layout>
@@ -40,17 +39,17 @@ export class Treatments extends React.Component {
             <li>
               <Link href={`/behandlinger/${treatment.sys.id}`}>
                 <a>
-                <h3 className="heading-medium">{treatment.fields.name}</h3>
-                <p>{treatment.fields.summary}</p>
-                <button>Les mer</button>
+                  <h3 className="heading-medium">{treatment.fields.name}</h3>
+                  <p>{treatment.fields.summary}</p>
+                  <button>Les mer</button>
                 </a>
               </Link>
             </li>
           ))}
         </ul>
       </Layout>
-    )
+    );
   }
 }
 
-export default Treatments
+export default Treatments;
