@@ -46,6 +46,11 @@ export class Article extends React.Component {
   }
 }
 
+// export const StyledArticle = styled.article`
+//   backgroundColor: #f1f1f1;
+//   padding: 80px;
+// `;
+
 const styles = StyleSheet.create({
   article: {
     backgroundColor: "#f1f1f1",

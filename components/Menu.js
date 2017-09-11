@@ -48,7 +48,7 @@ class Menu extends Component {
         customBurgerIcon={
           <div>
             <div className={css(styles.burgerIcon)}>
-              <span>Meny</span>
+              <span className={css(styles.burgerLabel)}>Meny</span>
               <svg
                 style={{ width: "24px", height: "24px" }}
                 viewBox="0 0 24 24"
@@ -58,7 +58,7 @@ class Menu extends Component {
                   d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"
                 />
               </svg>
-            </div>
+            </div>custom
           </div>
         }
       >
@@ -119,9 +119,12 @@ const styles = StyleSheet.create({
   burgerbarThree: {
     top: "80%"
   },
+  burgerLabel: {
+    color: "#fff"
+  },
   menu: {
     height: "100%",
-    backgroundColor: "rgba(32,39,68, 0.8)",
+    backgroundColor: "rgb(32,39,68)",
     margin: 0,
     padding: 0,
     listStyleType: "none"

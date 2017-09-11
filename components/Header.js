@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Link from "next/link";
-import { StyleSheet, css } from "aphrodite";
-import { colors } from "../variables/colors";
+import styled from "styled-components";
 import Menu from "@/components/Menu";
 
 class Header extends Component {
@@ -32,52 +31,44 @@ class Header extends Component {
   };
 
   render() {
-    const { id, pathname, as, children, solidMenu } = this.props;
+    const { className } = this.props;
 
-    //const headerClass = (this.props.solidMenu || this.state.solidMenu) ? 'header solid' : 'header';
+    const StyledHeader = styled.div`
+      position: fixed;
+      z-index: 10;
+      width: 100%;
+      height: 80px;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 300ms ease-in;
+      background-color: ${props =>
+        props.solidMenu || this.state.solidMenu
+          ? "rgba(32,39,68, 0.9)"
+          : "transparent"};
+    `;
+
+    const Logo = styled.a`padding: 0 30px;`;
+
+    const Image = styled.img`
+      position: relative;
+      top: 10;
+      max-width: 150px;
+    `;
 
     return (
-      <div
-        className={css(
-          styles.header,
-          (solidMenu || this.state.solidMenu) && styles.headerSolid
-        )}
-      >
+      <StyledHeader>
         <Link href="/">
-          <a className={css(styles.logo)}>
-            <img className={css(styles.image)} src="static/logo-blue.png" />
-          </a>
+          <Logo>
+            <Image src="static/logo-blue.png" />
+          </Logo>
         </Link>
         <Menu />
-      </div>
+      </StyledHeader>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  header: {
-    position: "fixed",
-    zIndex: "10",
-    width: "100%",
-    height: "80px",
-    top: 0,
-    left: 0,
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    transition: "background 300ms ease-in"
-  },
-  headerSolid: {
-    backgroundColor: "rgba(32,39,68, 0.9)"
-  },
-  logo: {
-    padding: "0 30px"
-  },
-  image: {
-    position: "relative",
-    top: 10,
-    maxWidth: "150px"
-  }
-});
 
 export default Header;

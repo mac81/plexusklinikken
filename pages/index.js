@@ -2,10 +2,11 @@ import fetch from "isomorphic-unfetch";
 import { createClient } from "contentful";
 import Link from "next/link";
 import { StyleSheet, css } from "aphrodite";
+import styled from "styled-components";
 
 import Layout from "../layouts/Layout";
 import PageIntro from "@/components/PageIntro";
-import ArticleSummary from "@/components/ArticleSummary";
+import { StyledArticleSummary as ArticleSummary } from "@/components/ArticleSummary";
 
 export class Index extends React.Component {
   static async getInitialProps({ req }) {
@@ -34,7 +35,6 @@ export class Index extends React.Component {
   }
 
   render() {
-    console.log(this.props);
 
     const { title, summary, backgroundImage, articles } = this.props;
 

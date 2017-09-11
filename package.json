@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "aphrodite": "^1.2.3",
+    "babel-plugin-styled-components": "^1.2.0",
     "contentful": "^4.6.0",
     "express": "^4.15.4",
     "isomorphic-unfetch": "^2.0.0",
@@ -20,7 +21,8 @@
     "next": "^3.0.6",
     "react": "^15.5.4",
     "react-burger-menu": "^2.1.5",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "styled-components": "^2.1.2"
   },
   "devDependencies": {
     "babel-plugin-css-in-js": "^1.5.1",
