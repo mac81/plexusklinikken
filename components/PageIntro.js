@@ -8,7 +8,7 @@ import styled from "styled-components";
 //import styles from './_pageIntro.scss';
 
 // Class
-const PageIntro = ({ children, className }) => {
+const PageIntro = ({ title, summary, children, className }) => {
   //const ScrollTo = Scroll.Link;
   //const bgClass = styles.bg + ' ' + styles[this.props.background];
 
@@ -17,7 +17,11 @@ const PageIntro = ({ children, className }) => {
   return (
     <div className={className}>
       <div>
-        <div>{children}</div>
+        <div>
+          <h1>{title}</h1>
+          <h2>{summary}</h2>
+          {children}
+        </div>
       </div>
     </div>
   );
@@ -25,12 +29,12 @@ const PageIntro = ({ children, className }) => {
 
 export const StyledPageIntro = styled(PageIntro)`
   display: block;
-  text-align: center;
+  text-align: ${props => (props.cover ? "center" : "left")};
   position: relative;
-  height: 100vh;
+  height: ${props => (props.cover ? "100vh" : "auto")};
   > div {
     width: 100%;
-    height: 100%;
+    height: ${props => (props.cover ? "100%" : "600px")};
     overflow-x: hidden;
     padding: 30px;
     background-size: cover;
@@ -39,12 +43,22 @@ export const StyledPageIntro = styled(PageIntro)`
       `linear-gradient(180deg, rgba(32, 39, 68, 0.8), rgba(36,37,66, 0.8)), url(${props.backgroundImage})`};
     > div {
       position: absolute;
-      top: 30vh;
+      top: ${props => (props.cover ? "30vh" : "40%")};
       left: 50%;
       width: 100%;
       max-width: 1200px;
       transform: translateX(-50%);
     }
+  }
+  h1 {
+    color: #fff;
+    font-size: 110px;
+    margin: 0 0 10px 0;
+  }
+  h2 {
+    color: #fff;
+    font-size: 34px;
+    margin: 0 0 30px 0;
   }
 `;
 

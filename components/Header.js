@@ -32,6 +32,7 @@ class Header extends Component {
 
   render() {
     const { className } = this.props;
+    const { solidMenu } = this.state;
 
     const StyledHeader = styled.div`
       position: fixed;
@@ -44,10 +45,8 @@ class Header extends Component {
       justify-content: space-between;
       align-items: center;
       transition: background 300ms ease-in;
-      background-color: ${props =>
-        props.solidMenu || this.state.solidMenu
-          ? "rgba(32,39,68, 0.9)"
-          : "transparent"};
+      background: ${props =>
+        props.solidMenu || solidMenu ? "rgba(32,39,68, 1)" : "transparent"};
     `;
 
     const Logo = styled.a`padding: 0 30px;`;

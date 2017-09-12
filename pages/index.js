@@ -35,14 +35,16 @@ export class Index extends React.Component {
   }
 
   render() {
-
     const { title, summary, backgroundImage, articles } = this.props;
 
     return (
       <Layout>
-        <PageIntro backgroundImage={backgroundImage}>
-          <h1 className={css(styles.heading)}>{title}</h1>
-          <h2 className={css(styles.subHeading)}>{summary}</h2>
+        <PageIntro
+          title={title}
+          summary={summary}
+          backgroundImage={backgroundImage}
+          cover
+        >
           <ul className={css(styles.actions)}>
             <li className={css(styles.actionItem)}>
               Bestill time
@@ -84,16 +86,6 @@ export class Index extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  heading: {
-    fontSize: "112px",
-    color: "#fff",
-    margin: "0 0 10px 0"
-  },
-  subHeading: {
-    fontSize: "34px",
-    color: "#fff",
-    margin: "0 0 30px 0"
-  },
   actions: {
     margin: 0,
     padding: 0,
