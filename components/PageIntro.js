@@ -18,7 +18,7 @@ const PageIntro = ({ title, summary, children, className }) => {
     <div className={className}>
       <div>
         <div>
-          <h1>{title}</h1>
+          <h1 className="display-4">{title}</h1>
           <h2>{summary}</h2>
           {children}
         </div>
@@ -51,13 +51,16 @@ export const StyledPageIntro = styled(PageIntro)`
     }
   }
   h1 {
-    color: #fff;
-    font-size: 110px;
-    margin: 0 0 10px 0;
+    color: ${props => props.theme.colors.white};
+    font-size: ${props => props.theme.typography.display4.fontSize};
+    line-height: ${props => props.theme.typography.display4.lineHeight};
+    font-weight: ${props => props.theme.typography.display4.fontWeight};
   }
   h2 {
-    color: #fff;
-    font-size: 34px;
+    color: ${props => props.theme.colors.white};
+    font-size: ${props => props.theme.typography.display2.fontSize};
+    line-height: ${props => props.theme.typography.display2.lineHeight};
+    font-weight: ${props => props.theme.typography.display2.fontWeight};
     margin: 0 0 30px 0;
   }
 `;

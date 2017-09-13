@@ -5,26 +5,27 @@ import styled from "styled-components";
 
 import Layout from "../layouts/Layout";
 import PageIntro from "@/components/PageIntro";
+import Anchor from "@/components/Anchor";
 
 /********
  * Styles
  *******/
 
-const TreatmentContainer = styled.div`background-color: #f1f1f1;`;
-
-const TreatmentsList = styled.ul`
-  margin: 0 auto;
-  padding: 30px 0;
-  list-style-type: none;
-  max-width: 1260px;
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-const Treatment = styled.li`
-  flex: 0 1 50%;
-  border: 30px solid #f1f1f1;
-  background-color: #fff;
+const TreatmentList = styled.div`
+  background-color: #f1f1f1;
+  ul {
+    margin: 0 auto;
+    padding: 30px 0;
+    list-style-type: none;
+    max-width: 1260px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  li {
+    flex: 0 1 50%;
+    border: 30px solid #f1f1f1;
+    background-color: #fff;
+  }
 
   a {
     display: block;
@@ -81,21 +82,25 @@ export class Treatments extends React.Component {
           backgroundImage={backgroundImage}
         />
 
-        <TreatmentContainer>
-          <TreatmentsList>
+        <TreatmentList>
+          <ul>
             {treatments.items.map(treatment => (
-              <Treatment key={treatment.sys.id}>
-                <Link href={`/behandlinger/${treatment.sys.id}`}>
-                  <a>
-                    <h3 className="heading-medium">{treatment.fields.name}</h3>
-                    <p>{treatment.fields.summary}</p>
-                    <button>Les mer</button>
-                  </a>
-                </Link>
-              </Treatment>
+              <li key={treatment.sys.id}>
+                <Anchor
+                  href={{
+                    pathname: "/behandlinger",
+                    query: { id: treatment.sys.id }
+                  }}
+                  as={`/behandlinger/${treatment.sys.id}`}
+                >
+                  <h3 className="heading-medium">{treatment.fields.name}</h3>
+                  <p>{treatment.fields.summary}</p>
+                  <button>Les mer</button>
+                </Anchor>
+              </li>
             ))}
-          </TreatmentsList>
-        </TreatmentContainer>
+          </ul>
+        </TreatmentList>
       </Layout>
     );
   }

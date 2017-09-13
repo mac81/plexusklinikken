@@ -1,23 +1,15 @@
 import React, { Component } from "react";
 import Link from "next/link";
 import { StyleSheet, css } from "aphrodite";
-import { colors } from "../variables/colors";
+import { colors } from "../theme/colors";
 
 class Anchor extends Component {
   render() {
-    const { href, as, style: { inverted }, children } = this.props;
+    const { href, as, children } = this.props;
 
     return (
       <Link as={as} href={href}>
-        <a
-          className={css(
-            styles.anchor,
-            inverted ? styles.inverted : styles.normal
-          )}
-          data-text={children}
-        >
-          {children}
-        </a>
+        <a data-text={children}>{children}</a>
       </Link>
     );
   }

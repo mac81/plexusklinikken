@@ -1,4 +1,4 @@
-import { colors } from "../variables/colors";
+import { colors } from "../theme/colors";
 import styled from "styled-components";
 
 // Components

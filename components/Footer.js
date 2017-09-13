@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Link from "next/link";
 import { StyleSheet, css } from "aphrodite";
-import { colors } from "../variables/colors";
+import { colors } from "../theme/colors";
 
 class Footer extends Component {
   render() {

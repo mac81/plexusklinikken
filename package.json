@@ -8,6 +8,11 @@
     "build": "next build",
     "start": "next start"
   },
+  "browserslist": [
+    "> 1%",
+    "last 10 versions",
+    "IE 10"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
