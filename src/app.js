@@ -5,7 +5,7 @@ import ReactDOM from "react-dom";
 import App from "./containers/App";
 
 const root = document.getElementById("app");
-console.log("test2");
+console.log("test3");
 // ReactDOM.render(
 //     <AppContainer>
 //         <App />
