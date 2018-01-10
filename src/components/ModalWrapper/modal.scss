@@ -55,7 +55,12 @@
 }
 
 .orderGroup {
-  margin-left: 20px;
+  margin: 20px 0 0 0;
+  clear: left;
+  @include bp(medium) {
+    clear: none;
+    margin: 0 0 0 20px;
+  }
 }
 
 .order {
