@@ -1,21 +1,18 @@
 //import { AppContainer } from 'react-hot-loader';
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import App from './containers/App';
+import App from "./containers/App";
 
-const root = document.getElementById('app');
-
+const root = document.getElementById("app");
+console.log("test");
 // ReactDOM.render(
 //     <AppContainer>
 //         <App />
 //     </AppContainer>,
 //     root
 // )
-ReactDOM.render(
-    <App />,
-    root
-)
+ReactDOM.render(<App />, root);
 
 // if (module.hot) {
 //     module.hot.accept('./containers/App', () => {
