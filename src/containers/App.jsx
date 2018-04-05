@@ -24,7 +24,7 @@ import {
 } from "../pages";
 
 const ReactGA = require("react-ga");
-ReactGA.initialize("UA-86523189-1");
+ReactGA.initialize("UA-96086129-1");
 
 const store = appStore();
 
